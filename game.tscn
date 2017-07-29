@@ -2,23 +2,13 @@
 
 [ext_resource path="res://world/grass.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rain-particle.png" type="Texture" id=2]
-[ext_resource path="res://mrOwl.tscn" type="PackedScene" id=3]
+[ext_resource path="res://owl/owl.tscn" type="PackedScene" id=3]
 
 [node name="game" type="Node2D"]
 
 [node name="grass" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( -28.7076, 512.637 )
-
-[node name="grass1" parent="." instance=ExtResource( 1 )]
-
-transform/pos = Vector2( 698.235, 524.044 )
-transform/rot = 8.0
-
-[node name="grass2" parent="." instance=ExtResource( 1 )]
-
-transform/pos = Vector2( 1688.04, 400.499 )
-transform/rot = 12.0
+transform/pos = Vector2( -7.68396, 613.55 )
 
 [node name="rain" type="Particles2D" parent="."]
 
@@ -49,8 +39,8 @@ params/anim_initial_pos = 0.0
 randomness/direction = 0.05
 color/color = Color( 0.601807, 0.630503, 0.664062, 1 )
 
-[node name="mrOwl" parent="." instance=ExtResource( 3 )]
+[node name="owl" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 488.563, 96.2322 )
+transform/pos = Vector2( 477.026, 227.08 )
 
 

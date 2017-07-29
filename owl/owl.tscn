@@ -1,0 +1,161 @@
+[gd_scene load_steps=17 format=1]
+
+[ext_resource path="res://owl/owl.gd" type="Script" id=1]
+[ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=2]
+[ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=3]
+[ext_resource path="res://owl/FSM/states/idle/idle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://owl/FSM/states/move/move.tscn" type="PackedScene" id=5]
+[ext_resource path="res://owl/FSM/states/fly_up/fly_up.tscn" type="PackedScene" id=6]
+[ext_resource path="res://owl/FSM/states/fly_down/fly_down.tscn" type="PackedScene" id=7]
+[ext_resource path="res://owl/FSM/transitions/dir_key_pressed/dir_key_pressed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://owl/FSM/transitions/flap_pressed/flap_pressed.tscn" type="PackedScene" id=9]
+[ext_resource path="res://owl/FSM/transitions/is_falling/is_falling.tscn" type="PackedScene" id=10]
+[ext_resource path="res://owl/FSM/transitions/touch_ground/touch_ground.tscn" type="PackedScene" id=11]
+[ext_resource path="res://owl/FSM/transitions/has_stopped/has_stopped.tscn" type="PackedScene" id=12]
+[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.tscn" type="PackedScene" id=13]
+[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.gd" type="Script" id=14]
+[ext_resource path="res://owl-placeholder.png" type="Texture" id=15]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 27.8418
+
+[node name="owl" type="KinematicBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="FSM2D" type="Node2D" parent="."]
+
+editor/display_folded = true
+script/script = ExtResource( 2 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+path2LogicRoot = NodePath("..")
+onlyActiveStateOnTheScene = false
+initManually = false
+updateMode = 1
+"Initial state:" = "fly_down"
+"Create new:/Subdirectory for FSM nodes:" = "FSM"
+"Create new:/Create state with name:" = null
+"Create new:/Create transition with name:" = null
+GraphData = {
+"dir_key_pressed": Vector2( 456, 78 ),
+"dir_key_pressed_": Vector2( 456, 78 ),
+"dir_key_pressed__": Vector2( 434, 86 ),
+"flap_in_air": Vector2( 385, 467 ),
+"flap_in_air_": Vector2( 356, 470 ),
+"flap_in_air__": Vector2( 296, 449 ),
+"flap_in_motion": Vector2( 729, 345 ),
+"flap_in_motion_": Vector2( 784, 269 ),
+"flap_pressed": Vector2( 504, 294 ),
+"flap_pressed_": Vector2( 504, 294 ),
+"flap_pressed__": Vector2( 459, 292 ),
+"fly_down": Vector2( 278, 590 ),
+"fly_down_": Vector2( 223, 590 ),
+"fly_down__": Vector2( 156, 544 ),
+"fly_up": Vector2( 474, 382 ),
+"fly_up_": Vector2( 474, 382 ),
+"fly_up__": Vector2( 474, 382 ),
+"has_stopped": Vector2( 455, 193 ),
+"has_stopped_": Vector2( 455, 193 ),
+"has_stopped__": Vector2( 440, 172 ),
+"idle": Vector2( 181, 190 ),
+"idle_": Vector2( 181, 190 ),
+"idle__": Vector2( 181, 190 ),
+"is_falling": Vector2( 568, 483 ),
+"is_falling_": Vector2( 510, 472 ),
+"is_falling__": Vector2( 458, 553 ),
+"move": Vector2( 744, 156 ),
+"move_": Vector2( 744, 156 ),
+"move__": Vector2( 744, 156 ),
+"touch_ground": Vector2( 151, 381 ),
+"touch_ground_": Vector2( 220, 353 ),
+"touch_ground__": Vector2( 186, 307 )
+}
+
+[node name="States" type="Node2D" parent="FSM2D"]
+
+[node name="idle" parent="FSM2D/States" instance=ExtResource( 4 )]
+
+[node name="move" parent="FSM2D/States" instance=ExtResource( 5 )]
+
+[node name="fly_up" parent="FSM2D/States" instance=ExtResource( 6 )]
+
+[node name="fly_down" parent="FSM2D/States" instance=ExtResource( 7 )]
+
+[node name="Transitions" type="Node2D" parent="FSM2D"]
+
+[node name="dir_key_pressed" parent="FSM2D/Transitions" instance=ExtResource( 8 )]
+
+path2SourceStates = [ NodePath(""), NodePath("../../States/idle") ]
+path2TargetState = NodePath("../../States/move")
+
+[node name="flap_pressed" parent="FSM2D/Transitions" instance=ExtResource( 9 )]
+
+path2SourceStates = [ NodePath(""), NodePath("../../States/move"), NodePath("../../States/idle") ]
+path2TargetState = NodePath("../../States/fly_up")
+
+[node name="is_falling" parent="FSM2D/Transitions" instance=ExtResource( 10 )]
+
+path2SourceStates = [ NodePath(""), NodePath("../../States/fly_up") ]
+path2TargetState = NodePath("../../States/fly_down")
+
+[node name="touch_ground" parent="FSM2D/Transitions" instance=ExtResource( 11 )]
+
+path2SourceStates = [ NodePath(""), NodePath("../../States/fly_down") ]
+path2TargetState = NodePath("../../States/idle")
+
+[node name="has_stopped" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
+
+path2SourceStates = [ NodePath(""), NodePath("../../States/move") ]
+path2TargetState = NodePath("../../States/idle")
+
+[node name="flap_in_air" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
+
+script/script = ExtResource( 14 )
+path2SourceStates = [ NodePath(""), NodePath("../../States/fly_down") ]
+path2TargetState = NodePath("../../States/fly_up")
+intervalBetweenChecks = -1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = true
+smoothing/speed = 6.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[connection signal="stateChanged" from="FSM2D" to="." method="_on_FSM2D_stateChanged"]
+
+

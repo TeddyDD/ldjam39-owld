@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://owl/FSM/transitions/dir_key_pressed/dir_key_pressed.gd" type="Script" id=1]
+
+[node name="dir_key_pressed" type="Node"]
+
+script/script = ExtResource( 1 )
+path2SourceStates = [ NodePath("") ]
+path2TargetState = null
+intervalBetweenChecks = -1.0
+
+
