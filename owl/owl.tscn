@@ -49,7 +49,7 @@ __meta__ = {
 path2LogicRoot = NodePath("..")
 onlyActiveStateOnTheScene = false
 initManually = false
-updateMode = 1
+updateMode = 2
 "Initial state:" = "fly_down"
 "Create new:/Subdirectory for FSM nodes:" = "FSM"
 "Create new:/Create state with name:" = null
@@ -58,8 +58,8 @@ GraphData = {
 "dir_key_pressed": Vector2( 456, 78 ),
 "dir_key_pressed_": Vector2( 456, 78 ),
 "dir_key_pressed__": Vector2( 434, 86 ),
-"dive": Vector2( 790, 591 ),
-"dive_": Vector2( 790, 591 ),
+"dive": Vector2( 740, 619 ),
+"dive_": Vector2( 740, 619 ),
 "flap_in_air": Vector2( 399, 466 ),
 "flap_in_air_": Vector2( 399, 466 ),
 "flap_in_air__": Vector2( 296, 449 ),
@@ -88,10 +88,10 @@ GraphData = {
 "move": Vector2( 744, 156 ),
 "move_": Vector2( 744, 156 ),
 "move__": Vector2( 744, 156 ),
-"not_diving": Vector2( 550, 757 ),
-"not_diving_": Vector2( 582, 743 ),
-"touch_ground": Vector2( 167, 687 ),
-"touch_ground_": Vector2( 167, 687 ),
+"not_diving": Vector2( 746, 715 ),
+"not_diving_": Vector2( 746, 715 ),
+"touch_ground": Vector2( 194, 654 ),
+"touch_ground_": Vector2( 194, 654 ),
 "touch_ground__": Vector2( 186, 307 )
 }
 

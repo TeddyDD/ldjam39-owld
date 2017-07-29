@@ -7,7 +7,7 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
-var FLY_UP_FORCE = global.gravity.y * 1.1
+var FLY_UP_FORCE = global.gravity.y * 0.8
 
 ##################################################################################
 #########                       Getters and Setters                      #########
