@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://owl/owl.gd" type="Script" id=1]
 [ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=2]
@@ -8,19 +8,15 @@
 [ext_resource path="res://owl/FSM/states/fly_up/fly_up.tscn" type="PackedScene" id=6]
 [ext_resource path="res://owl/FSM/states/fly_down/fly_down.tscn" type="PackedScene" id=7]
 [ext_resource path="res://owl/FSM/states/dive/dive.tscn" type="PackedScene" id=8]
-[ext_resource path="res://owl/FSM/states/dive/dive.gd" type="Script" id=9]
-[ext_resource path="res://owl/FSM/transitions/dir_key_pressed/dir_key_pressed.tscn" type="PackedScene" id=10]
-[ext_resource path="res://owl/FSM/transitions/flap_pressed/flap_pressed.tscn" type="PackedScene" id=11]
-[ext_resource path="res://owl/FSM/transitions/is_falling/is_falling.tscn" type="PackedScene" id=12]
-[ext_resource path="res://owl/FSM/transitions/touch_ground/touch_ground.tscn" type="PackedScene" id=13]
-[ext_resource path="res://owl/FSM/transitions/has_stopped/has_stopped.tscn" type="PackedScene" id=14]
-[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.tscn" type="PackedScene" id=15]
-[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.gd" type="Script" id=16]
-[ext_resource path="res://owl/FSM/transitions/is_diving/is_diving.tscn" type="PackedScene" id=17]
-[ext_resource path="res://owl/FSM/transitions/is_diving/is_diving.gd" type="Script" id=18]
-[ext_resource path="res://owl/FSM/transitions/not_diving/not_diving.tscn" type="PackedScene" id=19]
-[ext_resource path="res://owl/FSM/transitions/not_diving/not_diving.gd" type="Script" id=20]
-[ext_resource path="res://owl-placeholder.png" type="Texture" id=21]
+[ext_resource path="res://owl/FSM/transitions/dir_key_pressed/dir_key_pressed.tscn" type="PackedScene" id=9]
+[ext_resource path="res://owl/FSM/transitions/flap_pressed/flap_pressed.tscn" type="PackedScene" id=10]
+[ext_resource path="res://owl/FSM/transitions/is_falling/is_falling.tscn" type="PackedScene" id=11]
+[ext_resource path="res://owl/FSM/transitions/touch_ground/touch_ground.tscn" type="PackedScene" id=12]
+[ext_resource path="res://owl/FSM/transitions/has_stopped/has_stopped.tscn" type="PackedScene" id=13]
+[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.tscn" type="PackedScene" id=14]
+[ext_resource path="res://owl/FSM/transitions/is_diving/is_diving.tscn" type="PackedScene" id=15]
+[ext_resource path="res://owl/FSM/transitions/not_diving/not_diving.tscn" type="PackedScene" id=16]
+[ext_resource path="res://owl-placeholder.png" type="Texture" id=17]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -28,7 +24,9 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 27.8418
 
-[node name="owl" type="KinematicBody2D"]
+[node name="owl" type="KinematicBody2D" groups=[
+"player",
+]]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -47,7 +45,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
 path2LogicRoot = NodePath("..")
-onlyActiveStateOnTheScene = false
+onlyActiveStateOnTheScene = true
 initManually = false
 updateMode = 2
 "Initial state:" = "fly_down"
@@ -88,8 +86,8 @@ GraphData = {
 "move": Vector2( 744, 156 ),
 "move_": Vector2( 744, 156 ),
 "move__": Vector2( 744, 156 ),
-"not_diving": Vector2( 746, 715 ),
-"not_diving_": Vector2( 746, 715 ),
+"not_diving": Vector2( 633, 714 ),
+"not_diving_": Vector2( 633, 714 ),
 "touch_ground": Vector2( 194, 654 ),
 "touch_ground_": Vector2( 194, 654 ),
 "touch_ground__": Vector2( 186, 307 )
@@ -105,61 +103,53 @@ GraphData = {
 
 [node name="fly_down" parent="FSM2D/States" instance=ExtResource( 7 )]
 
-[node name="dive" type="Node" parent="FSM2D/States" instance=ExtResource( 8 )]
-
-script/script = ExtResource( 9 )
+[node name="dive" parent="FSM2D/States" instance=ExtResource( 8 )]
 
 [node name="Transitions" type="Node2D" parent="FSM2D"]
 
-[node name="dir_key_pressed" parent="FSM2D/Transitions" instance=ExtResource( 10 )]
+[node name="dir_key_pressed" parent="FSM2D/Transitions" instance=ExtResource( 9 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/idle") ]
 path2TargetState = NodePath("../../States/move")
 
-[node name="flap_pressed" parent="FSM2D/Transitions" instance=ExtResource( 11 )]
+[node name="flap_pressed" parent="FSM2D/Transitions" instance=ExtResource( 10 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/move"), NodePath("../../States/idle") ]
 path2TargetState = NodePath("../../States/fly_up")
 
-[node name="is_falling" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
+[node name="is_falling" parent="FSM2D/Transitions" instance=ExtResource( 11 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_up") ]
 path2TargetState = NodePath("../../States/fly_down")
 
-[node name="touch_ground" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
+[node name="touch_ground" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_down"), NodePath("../../States/dive") ]
 path2TargetState = NodePath("../../States/idle")
 
-[node name="has_stopped" parent="FSM2D/Transitions" instance=ExtResource( 14 )]
+[node name="has_stopped" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/move") ]
 path2TargetState = NodePath("../../States/idle")
 
-[node name="flap_in_air" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 15 )]
+[node name="flap_in_air" parent="FSM2D/Transitions" instance=ExtResource( 14 )]
 
-script/script = ExtResource( 16 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_down") ]
 path2TargetState = NodePath("../../States/fly_up")
-intervalBetweenChecks = -1.0
 
-[node name="is_diving" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 17 )]
+[node name="is_diving" parent="FSM2D/Transitions" instance=ExtResource( 15 )]
 
-script/script = ExtResource( 18 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_up"), NodePath("../../States/fly_down") ]
 path2TargetState = NodePath("../../States/dive")
-intervalBetweenChecks = -1.0
 
-[node name="not_diving" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 19 )]
+[node name="not_diving" parent="FSM2D/Transitions" instance=ExtResource( 16 )]
 
-script/script = ExtResource( 20 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/dive") ]
 path2TargetState = NodePath("../../States/fly_down")
-intervalBetweenChecks = -1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 
-texture = ExtResource( 21 )
+texture = ExtResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -185,6 +175,25 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+
+[node name="player_area" type="Area2D" parent="." groups=[
+"player",
+]]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="player_area"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
 [connection signal="stateChanged" from="FSM2D" to="." method="_on_FSM2D_stateChanged"]
 

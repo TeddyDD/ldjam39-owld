@@ -29,7 +29,7 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param4=null):
-	logicRoot.sideways_movement(deltaTime)
+#	logicRoot.sideways_movement(deltaTime)
 	logicRoot.velocity.y = (global.gravity.y * DIVE_MULTIPLIER)
 	logicRoot.standard_update(deltaTime)
 

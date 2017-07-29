@@ -28,4 +28,5 @@ func prepare(inNewStateID):
 	pass
 
 func transitionCondition(inDeltaTime, inParam0=null, inParam1=null, inParam2=null, inParam3=null, inParam4=null): 
-	return not Input.is_action_pressed("ui_down")
+	return not Input.is_action_pressed("ui_down") and\
+	getFSM().stateTime() > 0.3

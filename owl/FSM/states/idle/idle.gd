@@ -28,15 +28,8 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(delta, param0=null, param1=null, param2=null, param3=null, param4=null):
-	var motion = logicRoot.velocity * delta
-	logicRoot.move(motion)
-	if (logicRoot.is_colliding()):
-		var n = logicRoot.get_collision_normal()
-		logicRoot.last_collision = n
-#		get_node("debug").set_text("%s" % rad2deg(n.floor().angle()))
-		motion = n.slide(motion)
-		logicRoot.velocity = n.slide(logicRoot.velocity)
-		logicRoot.move(motion)
+	logicRoot.velocity.x = 0
+	logicRoot.standard_update(delta)
 
 #when exiting state
 func exit(toState=null):
