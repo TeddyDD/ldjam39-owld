@@ -20,6 +20,9 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 WALK_SPEED = 100
+SLOW_DOWN = 50
+MAX_X_SPEED = 350
+Y_SPEED = 400
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -30,5 +33,19 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
+
+[node name="debug" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -21.0
+margin/top = -41.0
+margin/right = 19.0
+margin/bottom = -27.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

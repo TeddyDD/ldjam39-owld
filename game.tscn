@@ -42,5 +42,8 @@ color/color = Color( 0.601807, 0.630503, 0.664062, 1 )
 [node name="mrOwl" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 488.563, 96.2322 )
+SLOW_DOWN = 50
+MAX_X_SPEED = 350
+Y_SPEED = 400
 
 
