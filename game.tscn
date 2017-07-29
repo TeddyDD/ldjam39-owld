@@ -12,13 +12,13 @@ transform/pos = Vector2( -28.7076, 512.637 )
 
 [node name="grass1" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 67.5245, -173.943 )
-transform/rot = -95.8327
+transform/pos = Vector2( 698.235, 524.044 )
+transform/rot = 8.0
 
 [node name="grass2" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 828.128, 656.985 )
-transform/rot = 99.3147
+transform/pos = Vector2( 1688.04, 400.499 )
+transform/rot = 12.0
 
 [node name="rain" type="Particles2D" parent="."]
 

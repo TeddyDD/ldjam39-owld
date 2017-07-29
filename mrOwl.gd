@@ -4,10 +4,10 @@ var sm = preload("res://fsm.gd")
 onready var fsm = sm.new()
 var current_state = null
 
-export var WALK_SPEED = 300
-export var SLOW_DOWN = 100
-export var MAX_X_SPEED = 350
-export var Y_SPEED = 100
+var WALK_SPEED = 300
+var SLOW_DOWN = 100
+var MAX_X_SPEED = 350
+var Y_SPEED = 250
 var last_collision = null
 var velocity = Vector2()
 
@@ -44,12 +44,12 @@ func _ready():
 ###########
 
 func _fixed_process(delta):
-#	get_node("debug").set_text(str(velocity.x, " XXX ", velocity.y))
+	get_node("debug").set_text(str(velocity.x, " XXX ", velocity.y))
 	fsm.process(delta)
 	
 	if current_state == "fly_up":
-		if Input.is_action_pressed("ui_up") and velocity.y > -Y_SPEED:
-			velocity.y -= Y_SPEED * delta
+		if Input.is_action_pressed("ui_up"):
+			velocity.y -= Y_SPEED
 #			assert(velocity.y <= -Y_SPEED)
 #			fsm.set_state("fly")
 	if velocity.y < global.gravity.y:
@@ -66,7 +66,7 @@ func _fixed_process(delta):
 	if (is_colliding()):
 		var n = get_collision_normal()
 		last_collision = n
-		get_node("debug").set_text("%s" % n.floor().angle())
+#		get_node("debug").set_text("%s" % rad2deg(n.floor().angle()))
 		motion = n.slide(motion)
 		velocity = n.slide(velocity)
 		move(motion)
@@ -122,8 +122,12 @@ func y_max_speed():
 	return velocity.y <= -Y_SPEED
 
 func is_on_the_ground():
-	if last_collision == null:
-		return false
+	if last_collision != null:
+		if last_collision.floor().x == 0 and\
+		   last_collision.floor().y == -1:
+			prints("ground")
+			return true
+	return false
 	
 
 # move on the ground?
