@@ -7,7 +7,8 @@ var current_state = null
 export var WALK_SPEED = 300
 export var SLOW_DOWN = 100
 export var MAX_X_SPEED = 350
-export var Y_SPEED = 256
+export var Y_SPEED = 100
+var last_collision = null
 var velocity = Vector2()
 
 enum { DIR_LEFT, DIR_RIGHT }
@@ -30,6 +31,10 @@ func _ready():
 	             [self, "is_flaping", true])
 	fsm.add_link("fly", "fly_up", "timed condition",\
 	             [1, self, "is_flaping", true])
+	fsm.add_link("fly_up", "fly", "condition",\
+	             [self, "y_max_speed", true])
+	fsm.add_link("air", "idle", "condition",\
+	             [self, "is_on_the_ground", true])
 	fsm.connect("state_changed",self,"on_state_changed")
 	set_fixed_process(true)
 	fsm.set_state("fly")
@@ -39,30 +44,34 @@ func _ready():
 ###########
 
 func _fixed_process(delta):
-	get_node("debug").set_text(str(velocity.x, " XXX ", velocity.y))
+#	get_node("debug").set_text(str(velocity.x, " XXX ", velocity.y))
 	fsm.process(delta)
 	
 	if current_state == "fly_up":
-		if Input.is_action_pressed("ui_up"):
-			velocity.y -= Y_SPEED
+		if Input.is_action_pressed("ui_up") and velocity.y > -Y_SPEED:
+			velocity.y -= Y_SPEED * delta
 #			assert(velocity.y <= -Y_SPEED)
-			fsm.set_state("fly")
-	else:
-		if velocity.y < global.gravity.y:
-			velocity.y += global.gravity.y * delta
+#			fsm.set_state("fly")
+	if velocity.y < global.gravity.y:
+		velocity.y += global.gravity.y * delta
 	
 	# left - rigt movement
 	velocity = process_move(delta, velocity)
 	
 	velocity.x = clamp(velocity.x, -MAX_X_SPEED, MAX_X_SPEED)
+	velocity.y = clamp(velocity.y, -Y_SPEED, global.gravity.y)
 	
 	var motion = velocity * delta
 	move(motion)
 	if (is_colliding()):
 		var n = get_collision_normal()
+		last_collision = n
+		get_node("debug").set_text("%s" % n.floor().angle())
 		motion = n.slide(motion)
 		velocity = n.slide(velocity)
 		move(motion)
+	else:
+		last_collision = null
 	
 	if abs(velocity.x) < 20:
 		velocity.x = 0
@@ -108,6 +117,14 @@ func set_direction(value):
 # flying
 func is_flaping():
 	return Input.is_action_pressed("ui_up")
+
+func y_max_speed():
+	return velocity.y <= -Y_SPEED
+
+func is_on_the_ground():
+	if last_collision == null:
+		return false
+	
 
 # move on the ground?
 func is_moving():
