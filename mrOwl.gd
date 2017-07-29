@@ -28,11 +28,11 @@ func _ready():
 	             [self, "is_moving", false]) # stop
 	fsm.add_link("ground", "fly_up", "condition",\
 	             [self, "is_flaping", true])
-	fsm.add_link("fly", "idle", "timeout",\
-	             [1])
+	fsm.add_link("fly", "fly_up", "timed condition",\
+	             [1, self, "is_flaping", true])
 	fsm.connect("state_changed",self,"on_state_changed")
 	set_fixed_process(true)
-	fsm.set_state("idle")
+	fsm.set_state("fly")
 
 ########### 
 # Process #
@@ -107,7 +107,7 @@ func set_direction(value):
 
 # flying
 func is_flaping():
-	return Input.is_action_pressed("ui_up") and current_state != "fly"
+	return Input.is_action_pressed("ui_up")
 
 # move on the ground?
 func is_moving():
