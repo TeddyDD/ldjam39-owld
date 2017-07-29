@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://home/home.gd" type="Script" id=1]
 [ext_resource path="res://tmp/photo_2017-07-29_19-35-22.jpg" type="Texture" id=2]
@@ -53,6 +53,11 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 22.0645, -16.4832, 55.1224, -16.4832, 55.3602, 44.4005, 14.454, 44.1626 )
+
 [node name="home" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -67,6 +72,7 @@ region_rect = Rect2( 408, 52, 544, 596 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 40 )
@@ -98,6 +104,7 @@ trigger = false
 
 [node name="Area2D" type="Area2D" parent="."]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -116,6 +123,7 @@ trigger = false
 
 [node name="outside" type="Sprite" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 7.50474, 7.48954 )
 transform/scale = Vector2( 0.286749, 0.283218 )
 z/z = 1
@@ -123,13 +131,41 @@ texture = ExtResource( 3 )
 region = true
 region_rect = Rect2( 512, 214, 388, 318 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="wall animation" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/hide_wall = SubResource( 4 )
 anims/show_wall = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="fuel drop" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fuel drop"]
+
+build_mode = 0
+polygon = Vector2Array( 22.0645, -16.4832, 55.1224, -16.4832, 55.3602, 44.4005, 14.454, 44.1626 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="deploy" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
