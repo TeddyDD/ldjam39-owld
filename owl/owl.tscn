@@ -22,9 +22,9 @@
 [ext_resource path="res://owl/FSM/transitions/in_house/in_house.gd" type="Script" id=20]
 [ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.tscn" type="PackedScene" id=21]
 [ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.gd" type="Script" id=22]
-[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=23]
-[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=24]
-[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=25]
+[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=23]
+[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=24]
+[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=25]
 [ext_resource path="res://owl/5_by_kyasarinn-dbi8q9m.png" type="Texture" id=26]
 [ext_resource path="res://owl/6_by_kyasarinn-dbi8q9b.png" type="Texture" id=27]
 [ext_resource path="res://owl/7_by_kyasarinn-dbi8q95.png" type="Texture" id=28]
@@ -53,7 +53,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ]
+"values": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -70,7 +70,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.2 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 24 ), ExtResource( 25 ) ]
+"values": [ ExtResource( 23 ), ExtResource( 24 ) ]
 }
 
 [sub_resource type="Animation" id=2]

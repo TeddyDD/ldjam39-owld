@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://home/home.gd" type="Script" id=1]
 [ext_resource path="res://home/domek_rodek_by_kyasarinn-dbi7yst.png" type="Texture" id=2]
 [ext_resource path="res://home/domek_zewntrzny_by_kyasarinn-dbi7yse.png" type="Texture" id=3]
+[ext_resource path="res://home/domek_rodek_otwarty_piecyk_by_kyasarinn-dbi7yt7.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 
@@ -57,6 +58,23 @@ tracks/0/keys = {
 
 custom_solver_bias = 0.0
 points = Vector2Array( 22.0645, -16.4832, 55.1224, -16.4832, 55.3602, 44.4005, 14.454, 44.1626 )
+
+[sub_resource type="Animation" id=10]
+
+resource/name = "burn stuff"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("inside:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2, 0.6 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 2 ) ]
+}
 
 [node name="home" type="Node2D" groups=[
 "home",
@@ -169,6 +187,17 @@ trigger = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="burn stuff" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+"anims/burn stuff" = SubResource( 10 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
