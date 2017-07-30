@@ -51,15 +51,30 @@ GraphData = {
 "carried_": Vector2( 480, 337 ),
 "destroyed": Vector2( 658, 216 ),
 "destroyed_": Vector2( 658, 216 ),
+"dir_key_pressed__": Vector2( 506, 154 ),
+"dive__": Vector2( 800, 630 ),
+"flap_in_air__": Vector2( 399, 466 ),
+"flap_pressed__": Vector2( 504, 294 ),
+"fly_down__": Vector2( 422, 586 ),
+"fly_up__": Vector2( 501, 384 ),
 "flying": Vector2( 474, 119 ),
 "flying_": Vector2( 474, 119 ),
 "flying__": Vector2( -9, 27 ),
+"has_stopped__": Vector2( 505, 227 ),
+"idle__": Vector2( 233, 228 ),
 "in_furnace": Vector2( 483, 415 ),
 "in_furnace_": Vector2( 483, 415 ),
+"in_house__": Vector2( 123, 81 ),
 "is_caught": Vector2( 477, 220 ),
 "is_caught_": Vector2( 477, 220 ),
+"is_diving__": Vector2( 725, 499 ),
+"is_falling__": Vector2( 536, 466 ),
+"move__": Vector2( 856, 214 ),
+"not_diving__": Vector2( 572, 725 ),
 "removed": Vector2( 726, 335 ),
-"removed_": Vector2( 726, 335 )
+"removed_": Vector2( 726, 335 ),
+"rest__": Vector2( 334, 83 ),
+"touch_ground__": Vector2( 282, 660 )
 }
 
 [node name="States" type="Node2D" parent="FSM2D"]
@@ -78,7 +93,6 @@ offset = Vector2( -0.0845547, 0.450453 )
 
 [node name="Area2D" type="Area2D" parent="FSM2D/States/flying/n"]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0.0006415, -0.0006415, 1, 0, 0 )
@@ -102,12 +116,10 @@ rect = Rect2( -10, -10, 20, 20 )
 
 [node name="carried" type="Node" parent="FSM2D/States" instance=ExtResource( 7 )]
 
-editor/display_folded = true
 script/script = ExtResource( 8 )
 
-[node name="Sprite1" type="Sprite" parent="FSM2D/States/carried"]
+[node name="Sprite" type="Sprite" parent="FSM2D/States/carried"]
 
-visibility/visible = false
 transform/pos = Vector2( 0.0845566, -0.552654 )
 transform/scale = Vector2( 1, 0.203161 )
 texture = ExtResource( 6 )
@@ -122,8 +134,6 @@ script/script = ExtResource( 10 )
 script/script = ExtResource( 12 )
 
 [node name="Transitions" type="Node2D" parent="FSM2D"]
-
-editor/display_folded = true
 
 [node name="is_caught" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
 
@@ -145,5 +155,7 @@ script/script = ExtResource( 18 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/carried") ]
 path2TargetState = NodePath("../../States/burned")
 intervalBetweenChecks = -1.0
+
+[connection signal="area_enter" from="FSM2D/States/flying/n/Area2D" to="FSM2D/States/flying" method="_on_Area2D_area_enter"]
 
 

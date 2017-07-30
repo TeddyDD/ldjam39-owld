@@ -10,6 +10,7 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 var rot_speed
 var sprite
 var n
+var caught = false
 
 ##################################################################################
 #########                       Getters and Setters                      #########
@@ -37,6 +38,7 @@ func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param
 	logicRoot.velocity += global.gravity * deltaTime
 	var motion = logicRoot.velocity * deltaTime
 	n.set_pos(n.get_pos() + motion)
+	logicRoot.vis_pos = n.get_pos()
 
 #when exiting state
 func exit(toState=null):
@@ -45,7 +47,13 @@ func exit(toState=null):
 ##################################################################################
 #########                       Connected Signals                        #########
 ##################################################################################
-
+func _on_Area2D_area_enter( area ):
+	if area.is_in_group("player"):
+		# i shuldn't do this...
+		if area.get_parent().carry_items == 0: # more than 1?
+			area.get_parent().carry_items += 1
+			caught = true
+	
 ##################################################################################
 #########     Methods fired because of events (usually via Groups interface)  ####
 ##################################################################################
@@ -61,3 +69,6 @@ func exit(toState=null):
 ##################################################################################
 #########                         Inner Classes                          #########
 ##################################################################################
+
+
+

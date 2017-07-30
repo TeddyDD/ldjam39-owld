@@ -13,6 +13,8 @@ var hp_regen = 25
 var hp_los = 6
 var hp_passive = 3
 
+var carry_items = 0
+
 
 func _ready():
 	set_fixed_process(true)
