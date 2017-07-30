@@ -6,13 +6,19 @@ enum { DIR_LEFT, DIR_RIGHT }
 var direction = DIR_RIGHT
 var WALK_SPEED = 150
 var in_house = false
+var home = null
 
 
 func _ready():
 	set_fixed_process(true)
+	home = get_tree().get_nodes_in_group("home")[0]
 	
 func _fixed_process(delta):
 	velocity.y += global.gravity.y * delta
+	
+	if not in_house:
+		get_node("home arrow").set_rot((home.get_pos() - get_pos()).angle())
+	
 
 func standard_update(delta):
 	var motion = velocity * delta
@@ -43,3 +49,8 @@ func _on_FSM2D_stateChanged( newStateID, oldStateID ):
 
 func _on_home_player_in_house( state ):
 	in_house = state
+	if in_house:
+		get_node("home arrow").hide()
+	else:
+		get_node("home arrow").show()
+		

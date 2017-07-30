@@ -58,7 +58,9 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 points = Vector2Array( 22.0645, -16.4832, 55.1224, -16.4832, 55.3602, 44.4005, 14.454, 44.1626 )
 
-[node name="home" type="Node2D"]
+[node name="home" type="Node2D" groups=[
+"home",
+]]
 
 script/script = ExtResource( 1 )
 
@@ -104,7 +106,6 @@ trigger = false
 
 [node name="Area2D" type="Area2D" parent="."]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -123,7 +124,6 @@ trigger = false
 
 [node name="outside" type="Sprite" parent="."]
 
-visibility/visible = false
 transform/pos = Vector2( 7.50474, 7.48954 )
 transform/scale = Vector2( 0.286749, 0.283218 )
 z/z = 1
