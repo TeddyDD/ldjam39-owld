@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
-[ext_resource path="res://color-modulate/color-modulate.tscn" type="PackedScene" id=2]
-[ext_resource path="res://home/home.tscn" type="PackedScene" id=3]
-[ext_resource path="res://world/grass.tscn" type="PackedScene" id=4]
+[ext_resource path="res://world/grass.tscn" type="PackedScene" id=2]
+[ext_resource path="res://color-modulate/color-modulate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://home/home.tscn" type="PackedScene" id=4]
 [ext_resource path="res://owl/owl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://rain-particle.png" type="Texture" id=6]
 [ext_resource path="res://rain.gd" type="Script" id=7]
@@ -14,15 +14,16 @@
 
 script/script = ExtResource( 1 )
 
-[node name="modulate" parent="." instance=ExtResource( 2 )]
+[node name="grass" parent="." instance=ExtResource( 2 )]
 
-[node name="home" parent="." instance=ExtResource( 3 )]
+transform/pos = Vector2( 484.645, 618.25 )
+z/z = -1
 
-transform/pos = Vector2( 476.724, 561.826 )
+[node name="modulate" parent="." instance=ExtResource( 3 )]
 
-[node name="grass" parent="." instance=ExtResource( 4 )]
+[node name="home" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -7.68396, 613.55 )
+transform/pos = Vector2( 476.724, 555.826 )
 
 [node name="owl" parent="." instance=ExtResource( 5 )]
 
@@ -61,7 +62,7 @@ script/script = ExtResource( 7 )
 
 [node name="spawner" type="Position2D" parent="owl"]
 
-transform/pos = Vector2( -10.4314, -340.433 )
+transform/pos = Vector2( -7.64194, -524.54 )
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -89,13 +90,33 @@ margin/bottom = 45.0
 process_mode = 1
 wait_time = 1.0
 one_shot = true
-autostart = true
+autostart = false
 
-[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
+[node name="intro camera" type="Camera2D" parent="."]
+
+transform/pos = Vector2( 330.193, 385.655 )
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 0.8, 0.8 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
 
 [connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
+
+[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
 
 [connection signal="timeout" from="fuel spawner" to="." method="_on_fuel_spawner_timeout"]
 
