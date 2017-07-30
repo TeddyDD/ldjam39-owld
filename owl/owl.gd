@@ -45,17 +45,19 @@ func standard_update(delta):
 		velocity = n.slide(velocity)
 		move(motion)
 		
-func sideways_movement(delta):
+func sideways_movement(delta, walkSpeed=WALK_SPEED):
 	velocity.x = velocity.x * 0.5 
 	if Input.is_action_pressed("ui_left"):
-		velocity.x += -WALK_SPEED
+		velocity.x += -walkSpeed
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += WALK_SPEED
+		velocity.x += walkSpeed
 	
 	if velocity.x > 0:
 		direction = DIR_RIGHT
+		get_node("Sprite").set_flip_h(false)
 	elif velocity.x < 0:
 		direction = DIR_LEFT
+		get_node("Sprite").set_flip_h(true)
 
 func _on_FSM2D_stateChanged( newStateID, oldStateID ):
 #	prints(newStateID)

@@ -7,7 +7,7 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
-const WALK_SPEED = 150
+const WALK_SPEED = 50
 
 ##################################################################################
 #########                       Getters and Setters                      #########
@@ -25,20 +25,21 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 
 #when entering state, usually you will want to reset internal state here somehow
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
-	pass
+	logicRoot.get_node("anim").play("walk")
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(delta, param0=null, param1=null, param2=null, param3=null, param4=null):
-	logicRoot.velocity.x = logicRoot.velocity.x * 0.5 
-	if Input.is_action_pressed("ui_left"):
-		logicRoot.velocity.x += -logicRoot.WALK_SPEED
-	if Input.is_action_pressed("ui_right"):
-		logicRoot.velocity.x += logicRoot.WALK_SPEED
-	
-	if logicRoot.velocity.x < 0:
-		logicRoot.direction = logicRoot.DIR_LEFT
-	elif logicRoot.velocity.x > 0:
-		logicRoot.direction = logicRoot.DIR_RIGHT
+#	logicRoot.velocity.x = logicRoot.velocity.x * 0.5 
+#	if Input.is_action_pressed("ui_left"):
+#		logicRoot.velocity.x += -logicRoot.WALK_SPEED
+#	if Input.is_action_pressed("ui_right"):
+#		logicRoot.velocity.x += logicRoot.WALK_SPEED
+#	
+#	if logicRoot.velocity.x < 0:
+#		logicRoot.direction = logicRoot.DIR_LEFT
+#	elif logicRoot.velocity.x > 0:
+#		logicRoot.direction = logicRoot.DIR_RIGHT
+	logicRoot.sideways_movement(delta, WALK_SPEED)
 	
 #	if Input.is_action_pressed("ui_up"):
 #		getFSM().get_node("Transitions/flap_pressed").accomplish()
