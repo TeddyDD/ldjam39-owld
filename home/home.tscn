@@ -143,7 +143,9 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="fuel drop" type="Area2D" parent="."]
+[node name="fuel drop" type="Area2D" parent="." groups=[
+"fuel_drop",
+]]
 
 editor/display_folded = true
 input/pickable = true

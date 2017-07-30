@@ -48,8 +48,10 @@ func exit(toState=null):
 func _on_Area2D_area_enter( area ):
 	if area.is_in_group("player"):
 		# i shuldn't do this...
-		if area.get_parent().carry_items == 0: # more than 1?
+		if area.get_parent().carry_items == 0\
+		and not area.get_parent().in_house: # more than 1?
 			area.get_parent().carry_items += 1
+			logicRoot.player = area.get_parent()
 			caught = true
 	
 ##################################################################################

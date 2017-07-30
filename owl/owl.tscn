@@ -236,4 +236,8 @@ invert/border = 100.0
 
 [connection signal="stateChanged" from="FSM2D" to="." method="_on_FSM2D_stateChanged"]
 
+[connection signal="area_enter" from="player_area" to="." method="_on_player_area_area_enter"]
+
+[connection signal="area_exit" from="player_area" to="." method="_on_player_area_area_exit"]
+
 

@@ -1,7 +1,7 @@
 extends Node2D
 
-var value = 50
 var velocity = Vector2()
+var player
 
 func _ready():
 	set_process(true)

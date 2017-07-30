@@ -7,7 +7,8 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
-
+var dropped = false
+var value = 50
 ##################################################################################
 #########                       Getters and Setters                      #########
 ##################################################################################
@@ -26,10 +27,11 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
 	logicRoot.get_node("flying").queue_free()
 	logicRoot.get_node("carried").show()
+	logicRoot.player.connect("dropItem", self, "on_drop_item")
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param4=null):
-	pass
+	logicRoot.set_pos(logicRoot.player.get_pos())
 
 #when exiting state
 func exit(toState=null):
@@ -38,7 +40,9 @@ func exit(toState=null):
 ##################################################################################
 #########                       Connected Signals                        #########
 ##################################################################################
-
+func on_drop_item(inArea):
+	dropped = true
+	
 ##################################################################################
 #########     Methods fired because of events (usually via Groups interface)  ####
 ##################################################################################

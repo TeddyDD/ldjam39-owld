@@ -14,6 +14,8 @@ var hp_los = 6
 var hp_passive = 3
 
 var carry_items = 0
+signal dropItem(inArea)
+var currentArea = null
 
 
 func _ready():
@@ -25,6 +27,11 @@ func _fixed_process(delta):
 	
 	if not in_house:
 		get_node("home arrow").set_rot((home.get_pos() - get_pos()).angle())
+	else:
+		if currentArea != null:
+			if Input.is_action_pressed("ui_accept"):
+				carry_items = 0
+				emit_signal("dropItem", currentArea)
 	
 
 func standard_update(delta):
@@ -62,3 +69,13 @@ func _on_home_player_in_house( state ):
 	else:
 		get_node("home arrow").show()
 		
+
+
+func _on_player_area_area_enter( area ):
+	if area.is_in_group("fuel_drop"):
+		currentArea = area
+
+
+func _on_player_area_area_exit( area ):
+	if area.is_in_group("fuel_drop"):
+		currentArea = null

@@ -121,8 +121,6 @@ GraphData = {
 
 [node name="States" type="Node2D" parent="FSM2D"]
 
-editor/display_folded = true
-
 [node name="flying" type="Node" parent="FSM2D/States" instance=ExtResource( 5 )]
 
 script/script = ExtResource( 6 )
