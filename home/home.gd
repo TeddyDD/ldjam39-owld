@@ -2,6 +2,10 @@ extends Node2D
 
 signal player_in_house(state)
 var deployed = false
+var max_asc_speed = 50
+var max_desc_speed = 50
+var cooldown = 4
+var speed = 0
 
 func _ready():
 	pass

@@ -7,6 +7,10 @@ func _ready():
 	
 func _process(delta):
 	get_node("ui/hp bar").set_value(get_node("owl").hp)
+	
+	get_node("ui/ascend bar").set_min(-get_node("home").max_desc_speed)
+	get_node("ui/ascend bar").set_max(get_node("home").max_asc_speed)
+	get_node("ui/ascend bar").set_value(get_node("home").speed)
 
 
 func _on_fuel_spawner_timeout():

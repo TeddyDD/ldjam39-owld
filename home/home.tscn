@@ -124,10 +124,12 @@ trigger = false
 
 [node name="outside" type="Sprite" parent="."]
 
-transform/pos = Vector2( 9.63, 21.3747 )
-transform/scale = Vector2( 0.286749, 0.283218 )
+transform/pos = Vector2( 10.8961, 9.43638 )
+transform/scale = Vector2( 0.286749, 0.288588 )
+z/z = 1
 texture = ExtResource( 3 )
-region_rect = Rect2( 512, 214, 388, 318 )
+region = true
+region_rect = Rect2( 144, 131, 323, 347 )
 
 [node name="wall animation" type="AnimationPlayer" parent="."]
 

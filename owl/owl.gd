@@ -51,7 +51,8 @@ func sideways_movement(delta):
 		direction = DIR_LEFT
 
 func _on_FSM2D_stateChanged( newStateID, oldStateID ):
-	prints(newStateID)
+#	prints(newStateID)
+	pass
 
 
 func _on_home_player_in_house( state ):
