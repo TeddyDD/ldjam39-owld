@@ -7,6 +7,9 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
+var rot_speed
+var sprite
+var n
 
 ##################################################################################
 #########                       Getters and Setters                      #########
@@ -24,12 +27,16 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 
 #when entering state, usually you will want to reset internal state here somehow
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
-	pass
+	rot_speed = rand_range(-8,8)
+	sprite = getFSM().getState().get_node("n/Sprite")
+	n = getFSM().getState().get_node("n")
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param4=null):
-	if logicRoot.hp < 100:
-		logicRoot.hp += logicRoot.hp_regen * deltaTime
+	sprite.set_rot(sprite.get_rot() + rot_speed * deltaTime)
+	logicRoot.velocity += global.gravity * deltaTime
+	var motion = logicRoot.velocity * deltaTime
+	n.set_pos(n.get_pos() + motion)
 
 #when exiting state
 func exit(toState=null):

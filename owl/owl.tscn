@@ -60,8 +60,8 @@ GraphData = {
 "dir_key_pressed": Vector2( 506, 154 ),
 "dir_key_pressed_": Vector2( 506, 154 ),
 "dir_key_pressed__": Vector2( 434, 86 ),
-"dive": Vector2( 740, 619 ),
-"dive_": Vector2( 740, 619 ),
+"dive": Vector2( 800, 630 ),
+"dive_": Vector2( 800, 630 ),
 "flap_in_air": Vector2( 399, 466 ),
 "flap_in_air_": Vector2( 399, 466 ),
 "flap_in_air__": Vector2( 296, 449 ),
@@ -84,16 +84,16 @@ GraphData = {
 "idle__": Vector2( 181, 190 ),
 "in_house": Vector2( 123, 81 ),
 "in_house_": Vector2( 123, 81 ),
-"is_diving": Vector2( 760, 458 ),
-"is_diving_": Vector2( 760, 458 ),
+"is_diving": Vector2( 725, 499 ),
+"is_diving_": Vector2( 725, 499 ),
 "is_falling": Vector2( 536, 466 ),
 "is_falling_": Vector2( 536, 466 ),
 "is_falling__": Vector2( 458, 553 ),
 "move": Vector2( 856, 214 ),
 "move_": Vector2( 856, 214 ),
 "move__": Vector2( 744, 156 ),
-"not_diving": Vector2( 633, 714 ),
-"not_diving_": Vector2( 633, 714 ),
+"not_diving": Vector2( 572, 725 ),
+"not_diving_": Vector2( 572, 725 ),
 "rest": Vector2( 334, 83 ),
 "rest_": Vector2( 334, 83 ),
 "touch_ground": Vector2( 282, 660 ),
@@ -199,6 +199,7 @@ drag_margin/bottom = 0.2
 "player",
 ]]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -215,6 +216,8 @@ trigger = false
 _update_shape_index = 0
 
 [node name="home arrow" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Polygon2D" type="Polygon2D" parent="home arrow"]
 

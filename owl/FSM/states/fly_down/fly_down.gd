@@ -28,6 +28,7 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(delta, param0=null, param1=null, param2=null, param3=null, param4=null):
+	logicRoot.hp -= logicRoot.hp_passive * delta
 	logicRoot.sideways_movement(delta)
 	var motion = logicRoot.velocity * delta
 	logicRoot.move(motion)

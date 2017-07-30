@@ -8,6 +8,11 @@ var WALK_SPEED = 150
 var in_house = false
 var home = null
 
+var hp = 100
+var hp_regen = 25
+var hp_los = 6
+var hp_passive = 3
+
 
 func _ready():
 	set_fixed_process(true)

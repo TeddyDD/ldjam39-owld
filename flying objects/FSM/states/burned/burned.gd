@@ -28,8 +28,7 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param4=null):
-	if logicRoot.hp < 100:
-		logicRoot.hp += logicRoot.hp_regen * deltaTime
+	pass
 
 #when exiting state
 func exit(toState=null):
