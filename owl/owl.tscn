@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=38 format=1]
 
 [ext_resource path="res://owl/owl.gd" type="Script" id=1]
 [ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=2]
@@ -20,15 +20,58 @@
 [ext_resource path="res://owl/FSM/transitions/not_diving/not_diving.tscn" type="PackedScene" id=18]
 [ext_resource path="res://owl/FSM/transitions/in_house/in_house.tscn" type="PackedScene" id=19]
 [ext_resource path="res://owl/FSM/transitions/in_house/in_house.gd" type="Script" id=20]
-[ext_resource path="res://owl/owl-walk2.png" type="Texture" id=21]
-[ext_resource path="res://owl/owl-walk1.png" type="Texture" id=22]
-[ext_resource path="res://owl/owl-walk3.png" type="Texture" id=23]
+[ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.tscn" type="PackedScene" id=21]
+[ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.gd" type="Script" id=22]
+[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=23]
+[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=24]
+[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=25]
+[ext_resource path="res://owl/5_by_kyasarinn-dbi8q9m.png" type="Texture" id=26]
+[ext_resource path="res://owl/6_by_kyasarinn-dbi8q9b.png" type="Texture" id=27]
+[ext_resource path="res://owl/7_by_kyasarinn-dbi8q95.png" type="Texture" id=28]
+[ext_resource path="res://owl/8_by_kyasarinn-dbi8q8u.png" type="Texture" id=29]
+[ext_resource path="res://owl/owl-walk1.png" type="Texture" id=30]
+[ext_resource path="res://owl/owl-walk2.png" type="Texture" id=31]
+[ext_resource path="res://owl/owl-walk3.png" type="Texture" id=32]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 height = 22.0
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "flap"
+length = 0.7
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "fly"
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 25 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 
@@ -44,7 +87,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 22 ) ]
+"values": [ ExtResource( 30 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -61,7 +104,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": FloatArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 22 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ]
+"values": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 30 ), ExtResource( 32 ) ]
 }
 
 [node name="owl" type="KinematicBody2D" groups=[
@@ -98,16 +141,18 @@ GraphData = {
 "dir_key_pressed__": Vector2( 434, 86 ),
 "dive": Vector2( 800, 630 ),
 "dive_": Vector2( 800, 630 ),
-"flap_in_air": Vector2( 399, 466 ),
-"flap_in_air_": Vector2( 399, 466 ),
+"falling_from_something": Vector2( 882, 324 ),
+"falling_from_something_": Vector2( 882, 324 ),
+"flap_in_air": Vector2( 318, 480 ),
+"flap_in_air_": Vector2( 318, 480 ),
 "flap_in_air__": Vector2( 296, 449 ),
 "flap_in_motion": Vector2( 729, 345 ),
 "flap_in_motion_": Vector2( 784, 269 ),
 "flap_pressed": Vector2( 504, 294 ),
 "flap_pressed_": Vector2( 504, 294 ),
 "flap_pressed__": Vector2( 459, 292 ),
-"fly_down": Vector2( 422, 586 ),
-"fly_down_": Vector2( 422, 586 ),
+"fly_down": Vector2( 449, 569 ),
+"fly_down_": Vector2( 449, 569 ),
 "fly_down__": Vector2( 156, 544 ),
 "fly_up": Vector2( 501, 384 ),
 "fly_up_": Vector2( 501, 384 ),
@@ -120,10 +165,10 @@ GraphData = {
 "idle__": Vector2( 181, 190 ),
 "in_house": Vector2( 123, 81 ),
 "in_house_": Vector2( 123, 81 ),
-"is_diving": Vector2( 725, 499 ),
-"is_diving_": Vector2( 725, 499 ),
-"is_falling": Vector2( 536, 466 ),
-"is_falling_": Vector2( 536, 466 ),
+"is_diving": Vector2( 788, 555 ),
+"is_diving_": Vector2( 788, 555 ),
+"is_falling": Vector2( 467, 478 ),
+"is_falling_": Vector2( 467, 478 ),
 "is_falling__": Vector2( 458, 553 ),
 "move": Vector2( 856, 214 ),
 "move_": Vector2( 856, 214 ),
@@ -132,8 +177,8 @@ GraphData = {
 "not_diving_": Vector2( 572, 725 ),
 "rest": Vector2( 334, 83 ),
 "rest_": Vector2( 334, 83 ),
-"touch_ground": Vector2( 282, 660 ),
-"touch_ground_": Vector2( 282, 660 ),
+"touch_ground": Vector2( 151, 671 ),
+"touch_ground_": Vector2( 151, 671 ),
 "touch_ground__": Vector2( 186, 307 )
 }
 
@@ -202,11 +247,18 @@ path2SourceStates = [ NodePath(""), NodePath("../../States/idle") ]
 path2TargetState = NodePath("../../States/rest")
 intervalBetweenChecks = -1.0
 
+[node name="falling_from_something" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 21 )]
+
+script/script = ExtResource( 22 )
+path2SourceStates = [ NodePath(""), NodePath("../../States/move") ]
+path2TargetState = NodePath("../../States/fly_down")
+intervalBetweenChecks = -1.0
+
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0.468667, 0 )
 transform/scale = Vector2( 0.0626632, 0.0626632 )
-texture = ExtResource( 21 )
+texture = ExtResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -277,12 +329,21 @@ invert/border = 100.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/flap = SubResource( 5 )
+anims/fly = SubResource( 4 )
 anims/idle = SubResource( 2 )
 anims/walk = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
+autoplay = "fly"
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [connection signal="stateChanged" from="FSM2D" to="." method="_on_FSM2D_stateChanged"]
 

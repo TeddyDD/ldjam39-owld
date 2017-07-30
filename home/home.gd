@@ -4,11 +4,15 @@ signal player_in_house(state)
 var deployed = false
 var max_asc_speed = 50
 var max_desc_speed = 50
-var cooldown = 4
+var cooldown = 2
 var speed = 0
 
 func _ready():
-	pass
+	set_process(true)
+	
+func _process(delta):
+	if speed > -max_desc_speed:
+		speed -= rand_range(cooldown/2, cooldown) * delta
 
 
 func _on_Area2D_area_enter( area ):

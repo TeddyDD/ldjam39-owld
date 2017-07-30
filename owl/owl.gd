@@ -17,9 +17,12 @@ var carry_items = 0
 signal dropItem(inArea)
 var currentArea = null
 
+var tween
+
 
 func _ready():
 	set_fixed_process(true)
+	tween = get_node("Tween")
 	home = get_tree().get_nodes_in_group("home")[0]
 	
 func _fixed_process(delta):
@@ -66,9 +69,18 @@ func _on_FSM2D_stateChanged( newStateID, oldStateID ):
 
 func _on_home_player_in_house( state ):
 	in_house = state
+	var c = get_node("Camera2D")
 	if in_house:
 		get_node("home arrow").hide()
+		tween.stop(c, "zoom")
+		tween.interpolate_property(c,\
+		"zoom", c.get("zoom"), Vector2(0.6,0.6), 1, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+		tween.start()
 	else:
+		tween.stop(c, "zoom")
+		tween.interpolate_property(c,\
+		"zoom", c.get("zoom"), Vector2(1,1), 0.7, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+		tween.start()
 		get_node("home arrow").show()
 		
 

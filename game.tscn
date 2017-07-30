@@ -30,13 +30,13 @@ transform/pos = Vector2( 503.683, 296.799 )
 
 [node name="rain" type="Particles2D" parent="owl"]
 
-transform/pos = Vector2( -606.9, -594.116 )
+transform/pos = Vector2( -427.63, -458.118 )
 z/z = 3
 config/amount = 400
 config/lifetime = 3.0
 config/preprocess = 3.0
 config/process_mode = 1
-config/half_extents = Vector2( 800, 400 )
+config/half_extents = Vector2( 900, 400 )
 config/local_space = false
 config/texture = ExtResource( 6 )
 params/direction = 45.0
@@ -91,9 +91,9 @@ wait_time = 1.0
 one_shot = true
 autostart = true
 
-[connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
-
 [connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
+
+[connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
 
