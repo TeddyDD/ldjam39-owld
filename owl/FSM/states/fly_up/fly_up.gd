@@ -25,9 +25,10 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 
 #when entering state, usually you will want to reset internal state here somehow
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
-	logicRoot.velocity.y = -FLY_UP_FORCE
-	logicRoot.hp -= logicRoot.hp_los
-	logicRoot.get_node("anim").play("flap")
+	if logicRoot.hp > 0:
+		logicRoot.velocity.y = -FLY_UP_FORCE
+		logicRoot.hp -= logicRoot.hp_los
+		logicRoot.get_node("anim").play("flap")
 	pass
 
 #when updating state, paramx can be used only if updating fsm manually

@@ -34,6 +34,8 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 func update(delta, param0=null, param1=null, param2=null, param3=null, param4=null):
 	logicRoot.velocity.x = 0
 	logicRoot.standard_update(delta)
+	if logicRoot.hp < 100:
+		logicRoot.hp += (logicRoot.hp_regen/5) * delta
 
 #when exiting state
 func exit(toState=null):

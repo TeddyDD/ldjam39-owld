@@ -11,7 +11,7 @@ extends "res://addons/net.kivano.fsm/content/FSMTransition.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
-
+var fallSpeed = 55
 ######################################
 ####### Getters
 func getFSM(): return fsm; #access to owner FSM, defined in parent class
@@ -28,4 +28,5 @@ func prepare(inNewStateID):
 	pass
 
 func transitionCondition(inDeltaTime, inParam0=null, inParam1=null, inParam2=null, inParam3=null, inParam4=null): 
-	return logicRoot.velocity.y > 20 
+	return logicRoot.velocity.y > fallSpeed\
+	       and not logicRoot.in_house

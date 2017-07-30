@@ -33,6 +33,12 @@ func update(delta, param0=null, param1=null, param2=null, param3=null, param4=nu
 	logicRoot.sideways_movement(delta)
 	var motion = logicRoot.velocity * delta
 	logicRoot.move(motion)
+	
+	# random wind
+	if randi() % 5 > 1:
+		logicRoot.velocity += Vector2(50,50) * delta
+	
+	
 	if (logicRoot.is_colliding()):
 		var n = logicRoot.get_collision_normal()
 		logicRoot.last_collision = n
