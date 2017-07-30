@@ -5,6 +5,7 @@ var last_collision = null
 enum { DIR_LEFT, DIR_RIGHT }
 var direction = DIR_RIGHT
 var WALK_SPEED = 150
+var in_house = false
 
 
 func _ready():
@@ -38,3 +39,7 @@ func sideways_movement(delta):
 
 func _on_FSM2D_stateChanged( newStateID, oldStateID ):
 	prints(newStateID)
+
+
+func _on_home_player_in_house( state ):
+	in_house = state
