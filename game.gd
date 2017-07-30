@@ -16,17 +16,12 @@ func _process(delta):
 func _on_fuel_spawner_timeout():
 	var f = fuel.instance()
 	# spawn position
-	var p = Vector2()
+	var p = Vector2(get_node("owl/spawner").get_global_pos())
+#	prints(p)
 	# spawn velocity vector
-	var v = Vector2(0,-35)
-	if randi() % 2 == 0: #left
-		p = get_viewport_rect().pos + Vector2(-10, 0)
-		v.x = 200
-	else: # right
-		p = get_viewport_rect().pos + get_viewport_rect().size + Vector2(10, 0)
-		p.y = get_viewport_rect().pos.y
-		v.x = -200
-	f.set_pos(p)
+	var v = (get_node("owl").get_pos() - p) + Vector2(rand_range(-100,100),0)
 	f.velocity = v
 	add_child(f)
+	f.set_pos(p)
+	
 	get_node("fuel spawner").start()

@@ -28,5 +28,6 @@ func prepare(inNewStateID):
 	pass
 
 func transitionCondition(inDeltaTime, inParam0=null, inParam1=null, inParam2=null, inParam3=null, inParam4=null): 
-	return not getFSM().getState().get_node("n/VisibilityNotifier2D").is_on_screen()\
+	return not logicRoot.get_node("flying/VisibilityNotifier2D").is_on_screen()\
 	and getFSM().stateTime() > 3
+	

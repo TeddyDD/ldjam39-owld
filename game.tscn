@@ -26,7 +26,6 @@ transform/pos = Vector2( -7.68396, 613.55 )
 
 [node name="owl" parent="." instance=ExtResource( 5 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 503.683, 296.799 )
 
 [node name="rain" type="Particles2D" parent="owl"]
@@ -60,9 +59,12 @@ randomness/direction = 0.05
 color/color = Color( 0.601807, 0.630503, 0.664062, 1 )
 script/script = ExtResource( 7 )
 
+[node name="spawner" type="Position2D" parent="owl"]
+
+transform/pos = Vector2( -10.4314, -340.433 )
+
 [node name="ui" type="CanvasLayer" parent="."]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -91,9 +93,9 @@ autostart = true
 
 [connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
 
-[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
-
 [connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
+
+[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
 
 [connection signal="timeout" from="fuel spawner" to="." method="_on_fuel_spawner_timeout"]
 

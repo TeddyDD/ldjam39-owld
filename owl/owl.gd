@@ -9,7 +9,7 @@ var in_house = false
 var home = null
 
 var hp = 100
-var hp_regen = 25
+var hp_regen = 35
 var hp_los = 6
 var hp_passive = 3
 

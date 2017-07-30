@@ -24,7 +24,8 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 
 #when entering state, usually you will want to reset internal state here somehow
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
-	getFSM().getState().get_node("Sprite").set_pos(logicRoot.vis_pos)
+	logicRoot.get_node("flying").queue_free()
+	logicRoot.get_node("carried").show()
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param4=null):

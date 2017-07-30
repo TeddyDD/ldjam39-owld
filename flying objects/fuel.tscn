@@ -1,11 +1,11 @@
 [gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://flying objects/fuel.gd" type="Script" id=1]
-[ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=2]
-[ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=3]
-[ext_resource path="res://flying objects/FSM/states/flying/flying.tscn" type="PackedScene" id=4]
-[ext_resource path="res://flying objects/FSM/states/flying/flying.gd" type="Script" id=5]
-[ext_resource path="res://tmp/wood-placeholder.png" type="Texture" id=6]
+[ext_resource path="res://tmp/wood-placeholder.png" type="Texture" id=2]
+[ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=3]
+[ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=4]
+[ext_resource path="res://flying objects/FSM/states/flying/flying.tscn" type="PackedScene" id=5]
+[ext_resource path="res://flying objects/FSM/states/flying/flying.gd" type="Script" id=6]
 [ext_resource path="res://flying objects/FSM/states/carried/carried.tscn" type="PackedScene" id=7]
 [ext_resource path="res://flying objects/FSM/states/carried/carried.gd" type="Script" id=8]
 [ext_resource path="res://flying objects/FSM/states/removed/removed.tscn" type="PackedScene" id=9]
@@ -30,11 +30,53 @@ radius = 20.8441
 
 script/script = ExtResource( 1 )
 
+[node name="flying" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="Sprite" type="Sprite" parent="flying"]
+
+transform/pos = Vector2( 0.0845566, 0.0251961 )
+texture = ExtResource( 2 )
+offset = Vector2( -0.0845547, 0.450453 )
+
+[node name="Area2D" type="Area2D" parent="flying"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0.0006415, -0.0006415, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flying/Area2D"]
+
+transform/rot = -0.0367553
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="flying"]
+
+transform/scale = Vector2( 2.63852, 2.63852 )
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="carried" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 0.0845566, -0.552654 )
+transform/scale = Vector2( 1, 0.203161 )
+texture = ExtResource( 2 )
+offset = Vector2( -0.0845547, 0.450453 )
+
 [node name="FSM2D" type="Node2D" parent="."]
 
-script/script = ExtResource( 2 )
+script/script = ExtResource( 3 )
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": ExtResource( 4 )
 }
 path2LogicRoot = NodePath("..")
 onlyActiveStateOnTheScene = true
@@ -79,52 +121,15 @@ GraphData = {
 
 [node name="States" type="Node2D" parent="FSM2D"]
 
-[node name="flying" type="Node" parent="FSM2D/States" instance=ExtResource( 4 )]
-
 editor/display_folded = true
-script/script = ExtResource( 5 )
 
-[node name="n" type="Node2D" parent="FSM2D/States/flying"]
+[node name="flying" type="Node" parent="FSM2D/States" instance=ExtResource( 5 )]
 
-[node name="Sprite" type="Sprite" parent="FSM2D/States/flying/n"]
-
-transform/pos = Vector2( 0.0845566, 0.0251961 )
-texture = ExtResource( 6 )
-offset = Vector2( -0.0845547, 0.450453 )
-
-[node name="Area2D" type="Area2D" parent="FSM2D/States/flying/n"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0.0006415, -0.0006415, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FSM2D/States/flying/n/Area2D"]
-
-transform/rot = -0.0367553
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="FSM2D/States/flying/n"]
-
-transform/scale = Vector2( 2.63852, 2.63852 )
-rect = Rect2( -10, -10, 20, 20 )
+script/script = ExtResource( 6 )
 
 [node name="carried" type="Node" parent="FSM2D/States" instance=ExtResource( 7 )]
 
 script/script = ExtResource( 8 )
-
-[node name="Sprite" type="Sprite" parent="FSM2D/States/carried"]
-
-transform/pos = Vector2( 0.0845566, -0.552654 )
-transform/scale = Vector2( 1, 0.203161 )
-texture = ExtResource( 6 )
-offset = Vector2( -0.0845547, 0.450453 )
 
 [node name="removed" type="Node" parent="FSM2D/States" instance=ExtResource( 9 )]
 
@@ -135,6 +140,8 @@ script/script = ExtResource( 10 )
 script/script = ExtResource( 12 )
 
 [node name="Transitions" type="Node2D" parent="FSM2D"]
+
+editor/display_folded = true
 
 [node name="is_caught" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
 
@@ -157,6 +164,6 @@ path2SourceStates = [ NodePath(""), NodePath("../../States/carried") ]
 path2TargetState = NodePath("../../States/burned")
 intervalBetweenChecks = -1.0
 
-[connection signal="area_enter" from="FSM2D/States/flying/n/Area2D" to="FSM2D/States/flying" method="_on_Area2D_area_enter"]
+[connection signal="area_enter" from="flying/Area2D" to="FSM2D/States/flying" method="_on_Area2D_area_enter"]
 
 
