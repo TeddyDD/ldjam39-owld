@@ -12,6 +12,9 @@ func _ready():
 	pass
 	
 func say(what, timeout=3):
+	if get_parent().get_node("FSM2D").getStateID() == "dead":
+		text.set_text("")
+		return
 	text.set_text(what)
 	anim.play("show")
 	timer.set_wait_time(timeout)

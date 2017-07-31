@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=1]
+[gd_scene load_steps=47 format=1]
 
 [ext_resource path="res://owl/owl.gd" type="Script" id=1]
 [ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=2]
@@ -9,31 +9,34 @@
 [ext_resource path="res://owl/FSM/states/fly_down/fly_down.tscn" type="PackedScene" id=7]
 [ext_resource path="res://owl/FSM/states/dive/dive.tscn" type="PackedScene" id=8]
 [ext_resource path="res://owl/FSM/states/rest/rest.tscn" type="PackedScene" id=9]
-[ext_resource path="res://owl/FSM/transitions/dir_key_pressed/dir_key_pressed.tscn" type="PackedScene" id=10]
-[ext_resource path="res://owl/FSM/transitions/flap_pressed/flap_pressed.tscn" type="PackedScene" id=11]
-[ext_resource path="res://owl/FSM/transitions/is_falling/is_falling.tscn" type="PackedScene" id=12]
-[ext_resource path="res://owl/FSM/transitions/touch_ground/touch_ground.tscn" type="PackedScene" id=13]
-[ext_resource path="res://owl/FSM/transitions/has_stopped/has_stopped.tscn" type="PackedScene" id=14]
-[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.tscn" type="PackedScene" id=15]
-[ext_resource path="res://owl/FSM/transitions/is_diving/is_diving.tscn" type="PackedScene" id=16]
-[ext_resource path="res://owl/FSM/transitions/not_diving/not_diving.tscn" type="PackedScene" id=17]
-[ext_resource path="res://owl/FSM/transitions/in_house/in_house.tscn" type="PackedScene" id=18]
-[ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.tscn" type="PackedScene" id=19]
-[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=20]
-[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=21]
-[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=22]
-[ext_resource path="res://owl/5_by_kyasarinn-dbi8q9m.png" type="Texture" id=23]
-[ext_resource path="res://owl/6_by_kyasarinn-dbi8q9b.png" type="Texture" id=24]
-[ext_resource path="res://owl/7_by_kyasarinn-dbi8q95.png" type="Texture" id=25]
-[ext_resource path="res://owl/8_by_kyasarinn-dbi8q8u.png" type="Texture" id=26]
-[ext_resource path="res://owl/owl-walk1.png" type="Texture" id=27]
-[ext_resource path="res://owl/owl-walk2.png" type="Texture" id=28]
-[ext_resource path="res://owl/owl-walk3.png" type="Texture" id=29]
-[ext_resource path="res://sounds/owl-splash.wav" type="Sample" id=30]
-[ext_resource path="res://sounds/owl-step.wav" type="Sample" id=31]
-[ext_resource path="res://sounds/owl-wings.wav" type="Sample" id=32]
-[ext_resource path="res://owl/say.gd" type="Script" id=33]
-[ext_resource path="res://fonts/ZillaSlab-Medium.ttf" type="DynamicFontData" id=34]
+[ext_resource path="res://owl/FSM/states/dead/dead.tscn" type="PackedScene" id=10]
+[ext_resource path="res://owl/FSM/states/dead/dead.gd" type="Script" id=11]
+[ext_resource path="res://owl/FSM/transitions/dir_key_pressed/dir_key_pressed.tscn" type="PackedScene" id=12]
+[ext_resource path="res://owl/FSM/transitions/flap_pressed/flap_pressed.tscn" type="PackedScene" id=13]
+[ext_resource path="res://owl/FSM/transitions/is_falling/is_falling.tscn" type="PackedScene" id=14]
+[ext_resource path="res://owl/FSM/transitions/touch_ground/touch_ground.tscn" type="PackedScene" id=15]
+[ext_resource path="res://owl/FSM/transitions/has_stopped/has_stopped.tscn" type="PackedScene" id=16]
+[ext_resource path="res://owl/FSM/transitions/flap_in_air/flap_in_air.tscn" type="PackedScene" id=17]
+[ext_resource path="res://owl/FSM/transitions/is_diving/is_diving.tscn" type="PackedScene" id=18]
+[ext_resource path="res://owl/FSM/transitions/not_diving/not_diving.tscn" type="PackedScene" id=19]
+[ext_resource path="res://owl/FSM/transitions/in_house/in_house.tscn" type="PackedScene" id=20]
+[ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.tscn" type="PackedScene" id=21]
+[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=22]
+[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=23]
+[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=24]
+[ext_resource path="res://owl/5_by_kyasarinn-dbi8q9m.png" type="Texture" id=25]
+[ext_resource path="res://owl/6_by_kyasarinn-dbi8q9b.png" type="Texture" id=26]
+[ext_resource path="res://owl/7_by_kyasarinn-dbi8q95.png" type="Texture" id=27]
+[ext_resource path="res://owl/8_by_kyasarinn-dbi8q8u.png" type="Texture" id=28]
+[ext_resource path="res://owl/owl-walk1.png" type="Texture" id=29]
+[ext_resource path="res://owl/owl-walk2.png" type="Texture" id=30]
+[ext_resource path="res://owl/owl-walk3.png" type="Texture" id=31]
+[ext_resource path="res://sounds/fire.wav" type="Sample" id=32]
+[ext_resource path="res://sounds/owl-splash.wav" type="Sample" id=33]
+[ext_resource path="res://sounds/owl-step.wav" type="Sample" id=34]
+[ext_resource path="res://sounds/owl-wings.wav" type="Sample" id=35]
+[ext_resource path="res://owl/say.gd" type="Script" id=36]
+[ext_resource path="res://fonts/ZillaSlab-Medium.ttf" type="DynamicFontData" id=37]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -55,7 +58,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ]
+"values": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("carry/carry point:transform/pos")
@@ -92,7 +95,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.2 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 20 ), ExtResource( 21 ) ]
+"values": [ ExtResource( 22 ), ExtResource( 23 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("carry/carry point:transform/pos")
@@ -128,7 +131,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 27 ) ]
+"values": [ ExtResource( 29 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("carry/carry point:transform/pos")
@@ -154,7 +157,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": FloatArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 29 ) ]
+"values": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 31 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("carry/carry point:transform/pos")
@@ -179,23 +182,29 @@ tracks/2/keys = {
 
 [sub_resource type="SampleLibrary" id=6]
 
+samples/fire = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 32 )
+}
 samples/owl-splash = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 30 )
+"sample": ExtResource( 33 )
 }
 samples/owl-step = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 31 )
+"sample": ExtResource( 34 )
 }
 samples/owl-wings = {
 "db": -12.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 32 )
+"sample": ExtResource( 35 )
 }
 
 [sub_resource type="DynamicFont" id=9]
@@ -203,7 +212,7 @@ samples/owl-wings = {
 font/size = 17
 font/use_mipmaps = true
 font/use_filter = true
-font/font = ExtResource( 34 )
+font/font = ExtResource( 37 )
 
 [sub_resource type="Animation" id=7]
 
@@ -292,50 +301,58 @@ updateMode = 2
 "Create new:/Create state with name:" = null
 "Create new:/Create transition with name:" = null
 GraphData = {
+"dead": Vector2( 700, 71 ),
+"dead_": Vector2( 700, 71 ),
 "dir_key_pressed": Vector2( 506, 154 ),
 "dir_key_pressed_": Vector2( 506, 154 ),
-"dir_key_pressed__": Vector2( 434, 86 ),
+"dir_key_pressed__": Vector2( 506, 154 ),
 "dive": Vector2( 800, 630 ),
 "dive_": Vector2( 800, 630 ),
+"dive__": Vector2( 800, 630 ),
 "falling_from_something": Vector2( 778, 337 ),
 "falling_from_something_": Vector2( 778, 337 ),
+"falling_from_something__": Vector2( 778, 337 ),
 "flap_in_air": Vector2( 318, 480 ),
 "flap_in_air_": Vector2( 318, 480 ),
-"flap_in_air__": Vector2( 296, 449 ),
+"flap_in_air__": Vector2( 318, 480 ),
 "flap_in_motion": Vector2( 729, 345 ),
 "flap_in_motion_": Vector2( 784, 269 ),
 "flap_pressed": Vector2( 504, 294 ),
 "flap_pressed_": Vector2( 504, 294 ),
-"flap_pressed__": Vector2( 459, 292 ),
+"flap_pressed__": Vector2( 504, 294 ),
 "fly_down": Vector2( 449, 569 ),
 "fly_down_": Vector2( 449, 569 ),
-"fly_down__": Vector2( 156, 544 ),
+"fly_down__": Vector2( 449, 569 ),
 "fly_up": Vector2( 501, 384 ),
 "fly_up_": Vector2( 501, 384 ),
-"fly_up__": Vector2( 474, 382 ),
+"fly_up__": Vector2( 501, 384 ),
 "has_stopped": Vector2( 505, 227 ),
 "has_stopped_": Vector2( 505, 227 ),
-"has_stopped__": Vector2( 440, 172 ),
+"has_stopped__": Vector2( 505, 227 ),
 "idle": Vector2( 239, 221 ),
 "idle_": Vector2( 239, 221 ),
-"idle__": Vector2( 181, 190 ),
+"idle__": Vector2( 239, 221 ),
 "in_house": Vector2( 123, 81 ),
 "in_house_": Vector2( 123, 81 ),
+"in_house__": Vector2( 123, 81 ),
 "is_diving": Vector2( 788, 555 ),
 "is_diving_": Vector2( 788, 555 ),
+"is_diving__": Vector2( 788, 555 ),
 "is_falling": Vector2( 467, 478 ),
 "is_falling_": Vector2( 467, 478 ),
-"is_falling__": Vector2( 458, 553 ),
+"is_falling__": Vector2( 467, 478 ),
 "move": Vector2( 856, 214 ),
 "move_": Vector2( 856, 214 ),
-"move__": Vector2( 744, 156 ),
+"move__": Vector2( 856, 214 ),
 "not_diving": Vector2( 572, 725 ),
 "not_diving_": Vector2( 572, 725 ),
+"not_diving__": Vector2( 572, 725 ),
 "rest": Vector2( 334, 83 ),
 "rest_": Vector2( 334, 83 ),
+"rest__": Vector2( 334, 83 ),
 "touch_ground": Vector2( 151, 671 ),
 "touch_ground_": Vector2( 151, 671 ),
-"touch_ground__": Vector2( 186, 307 )
+"touch_ground__": Vector2( 151, 671 )
 }
 
 [node name="States" type="Node2D" parent="FSM2D"]
@@ -352,54 +369,58 @@ GraphData = {
 
 [node name="rest" parent="FSM2D/States" instance=ExtResource( 9 )]
 
+[node name="dead" type="Node" parent="FSM2D/States" instance=ExtResource( 10 )]
+
+script/script = ExtResource( 11 )
+
 [node name="Transitions" type="Node2D" parent="FSM2D"]
 
-[node name="dir_key_pressed" parent="FSM2D/Transitions" instance=ExtResource( 10 )]
+[node name="dir_key_pressed" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/idle"), NodePath("../../States/rest") ]
 path2TargetState = NodePath("../../States/move")
 
-[node name="flap_pressed" parent="FSM2D/Transitions" instance=ExtResource( 11 )]
+[node name="flap_pressed" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/move"), NodePath("../../States/idle") ]
 path2TargetState = NodePath("../../States/fly_up")
 
-[node name="is_falling" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
+[node name="is_falling" parent="FSM2D/Transitions" instance=ExtResource( 14 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_up") ]
 path2TargetState = NodePath("../../States/fly_down")
 
-[node name="touch_ground" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
+[node name="touch_ground" parent="FSM2D/Transitions" instance=ExtResource( 15 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_down"), NodePath("../../States/dive") ]
 path2TargetState = NodePath("../../States/idle")
 
-[node name="has_stopped" parent="FSM2D/Transitions" instance=ExtResource( 14 )]
+[node name="has_stopped" parent="FSM2D/Transitions" instance=ExtResource( 16 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/move") ]
 path2TargetState = NodePath("../../States/idle")
 
-[node name="flap_in_air" parent="FSM2D/Transitions" instance=ExtResource( 15 )]
+[node name="flap_in_air" parent="FSM2D/Transitions" instance=ExtResource( 17 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_down") ]
 path2TargetState = NodePath("../../States/fly_up")
 
-[node name="is_diving" parent="FSM2D/Transitions" instance=ExtResource( 16 )]
+[node name="is_diving" parent="FSM2D/Transitions" instance=ExtResource( 18 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/fly_up"), NodePath("../../States/fly_down") ]
 path2TargetState = NodePath("../../States/dive")
 
-[node name="not_diving" parent="FSM2D/Transitions" instance=ExtResource( 17 )]
+[node name="not_diving" parent="FSM2D/Transitions" instance=ExtResource( 19 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/dive") ]
 path2TargetState = NodePath("../../States/fly_down")
 
-[node name="in_house" parent="FSM2D/Transitions" instance=ExtResource( 18 )]
+[node name="in_house" parent="FSM2D/Transitions" instance=ExtResource( 20 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/idle") ]
 path2TargetState = NodePath("../../States/rest")
 
-[node name="falling_from_something" parent="FSM2D/Transitions" instance=ExtResource( 19 )]
+[node name="falling_from_something" parent="FSM2D/Transitions" instance=ExtResource( 21 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/move") ]
 path2TargetState = NodePath("../../States/fly_down")
@@ -408,7 +429,7 @@ path2TargetState = NodePath("../../States/fly_down")
 
 transform/pos = Vector2( 0.468667, 0 )
 transform/scale = Vector2( 0.0626632, 0.0626632 )
-texture = ExtResource( 20 )
+texture = ExtResource( 22 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -515,7 +536,7 @@ config/pitch_random = 0.0
 [node name="say" type="Node2D" parent="."]
 
 z/z = 5
-script/script = ExtResource( 33 )
+script/script = ExtResource( 36 )
 
 [node name="text" type="Label" parent="say"]
 

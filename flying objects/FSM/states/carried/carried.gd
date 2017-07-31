@@ -29,6 +29,7 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 	logicRoot.get_node("flying").queue_free()
 	logicRoot.get_node("carried").show()
 	logicRoot.set_rot(PI)
+	logicRoot.get_node("SamplePlayer2D").play("break")
 	logicRoot.player.connect("dropItem", self, "on_drop_item")
 
 #when updating state, paramx can be used only if updating fsm manually

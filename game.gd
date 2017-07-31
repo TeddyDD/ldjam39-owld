@@ -3,6 +3,7 @@ extends Node2D
 var fuel = preload("res://flying objects/fuel.tscn")
 
 var start_sequence = true
+var game_win = false
 
 func _ready():
 	set_process(true)
@@ -13,6 +14,8 @@ func _process(delta):
 	get_node("ui/ascend bar").set_min(-get_node("home").max_desc_speed)
 	get_node("ui/ascend bar").set_max(get_node("home").max_asc_speed)
 	get_node("ui/ascend bar").set_value(get_node("home").speed)
+	if Input.is_action_pressed("ui_accept") and game_win == true:
+		get_tree().change_scene("res://menu/menu.tscn")
 
 
 func _on_fuel_spawner_timeout():
@@ -50,3 +53,15 @@ func _on_home_player_in_house( state ):
 	get_node("game start").play("start2_house")
 	
 #	get_node("owl/Camera2D").make_current()
+
+# HOORAY! WIN
+func _on_win_timer_timeout():
+	get_node("/root/game/owl").set_pos(get_node("home").get_pos())
+	get_node("ui/game over").set_text(\
+	"""The end of the flood
+	You win""")
+	get_node("home").deployed = false
+	get_node("intro camera").make_current()
+	get_node("game start").play("win")
+	get_node("fuel spawner").stop()
+	game_win = true

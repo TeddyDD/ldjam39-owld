@@ -32,7 +32,7 @@ var talk = {
 
 func say(what):
 	if not talk[what].said:
-		get_node("say").say(talk[what].txt)
+		get_node("say").say(talk[what].txt, 4)
 		talk[what].said = true
 
 func _ready():
@@ -112,6 +112,8 @@ func _on_home_player_in_house( state ):
 func _on_player_area_area_enter( area ):
 	if area.is_in_group("fuel_drop"):
 		currentArea = area
+	elif area.is_in_group("water"):
+		get_node("FSM2D").changeStateTo("dead")
 
 
 func _on_player_area_area_exit( area ):

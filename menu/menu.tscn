@@ -56,9 +56,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 413.0
+margin/right = 458.0
 margin/bottom = 121.0
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "OWLD"
 align = 1
 valign = 1
@@ -74,8 +75,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 125.0
-margin/right = 413.0
-margin/bottom = 357.0
+margin/right = 458.0
+margin/bottom = 253.0
 
 [node name="play" type="Button" parent="VBoxContainer"]
 
@@ -85,9 +86,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 361.0
-margin/right = 413.0
-margin/bottom = 461.0
+margin/top = 257.0
+margin/right = 458.0
+margin/bottom = 357.0
 custom_fonts/font = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -103,9 +104,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 465.0
-margin/right = 413.0
-margin/bottom = 565.0
+margin/top = 361.0
+margin/right = 458.0
+margin/bottom = 461.0
 custom_fonts/font = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -113,8 +114,60 @@ shortcut = null
 text = "Ludum Dare 39"
 flat = false
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 465.0
+margin/right = 458.0
+margin/bottom = 565.0
+alignment = 0
+
+[node name="kas" type="Button" parent="VBoxContainer/HBoxContainer"]
+
+rect/min_size = Vector2( 0, 100 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 227.0
+margin/bottom = 100.0
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Kyasarinn"
+flat = false
+
+[node name="dan" type="Button" parent="VBoxContainer/HBoxContainer"]
+
+rect/min_size = Vector2( 0, 100 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 231.0
+margin/top = 0.0
+margin/right = 458.0
+margin/bottom = 100.0
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "TeddyDD"
+flat = false
+
 [connection signal="button_down" from="VBoxContainer/play" to="." method="_on_play_button_down"]
 
 [connection signal="button_down" from="VBoxContainer/ldjam" to="." method="_on_ldjam_button_down"]
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/kas" to="." method="_on_kas_button_down"]
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/dan" to="." method="_on_dan_button_down"]
 
 

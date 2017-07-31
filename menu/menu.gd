@@ -16,3 +16,11 @@ func _on_play_button_down():
 
 func _on_ldjam_button_down():
 	OS.shell_open("https://ldjam.com/events/ludum-dare/39")
+
+
+func _on_kas_button_down():
+	OS.shell_open("https://kyasarinn.deviantart.com")
+
+
+func _on_dan_button_down():
+	OS.shell_open("https://keybase.io/teddydd")

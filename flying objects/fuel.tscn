@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://flying objects/fuel.gd" type="Script" id=1]
 [ext_resource path="res://flying objects/krzeslo.png" type="Texture" id=2]
@@ -16,7 +16,8 @@
 [ext_resource path="res://flying objects/FSM/transitions/in_furnace/in_furnace.tscn" type="PackedScene" id=14]
 [ext_resource path="res://flying objects/FSM/transitions/hit_player/hit_player.tscn" type="PackedScene" id=15]
 [ext_resource path="res://flying objects/FSM/transitions/hit_player/hit_player.gd" type="Script" id=16]
-[ext_resource path="res://sounds/hit.wav" type="Sample" id=17]
+[ext_resource path="res://sounds/break.wav" type="Sample" id=17]
+[ext_resource path="res://sounds/hit.wav" type="Sample" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -25,11 +26,17 @@ radius = 30.7266
 
 [sub_resource type="SampleLibrary" id=2]
 
-samples/hit = {
+samples/break = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 17 )
+}
+samples/hit = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 18 )
 }
 
 [node name="fuel" type="Node2D" groups=[

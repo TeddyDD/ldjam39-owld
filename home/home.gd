@@ -3,7 +3,7 @@ extends Node2D
 signal player_in_house(state)
 var deployed = false
 var max_asc_speed = 50
-var max_desc_speed = 40
+var max_desc_speed = 50
 var cooldown = 2
 var speed = 0
 
@@ -16,6 +16,8 @@ func _fixed_process(delta):
 	if speed > -max_desc_speed:
 		speed -= rand_range(cooldown/2, cooldown) * delta
 	if deployed:
+#		if speed < max_asc_speed - 10:
+#			get_node("/root/game/owl").say("get")
 		set_pos(get_pos() + Vector2(0, -speed) * delta)
 	speed = clamp(speed, -max_desc_speed, max_asc_speed)
 		
@@ -33,6 +35,11 @@ func _on_Area2D_area_enter( area ):
 			get_node("deploy").play("deploy")
 		get_node("wall animation").play("hide_wall")
 		emit_signal("player_in_house", true)
+	if area.is_in_group("water"):
+		get_node("/root/game/ui/game over").set_text(\
+		"""Your home has drowned. Game over.
+		Press space to restart""")
+		get_node("/root/game/owl/FSM2D").changeStateTo("dead")
 
 func _on_Area2D_area_exit( area ):
 	if area.is_in_group("player"):
