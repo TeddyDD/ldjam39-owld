@@ -58,9 +58,11 @@ func sideways_movement(delta, walkSpeed=WALK_SPEED):
 	if velocity.x > 0:
 		direction = DIR_RIGHT
 		get_node("Sprite").set_flip_h(false)
+		get_node("carry").set_scale(Vector2(1,1))
 	elif velocity.x < 0:
 		direction = DIR_LEFT
 		get_node("Sprite").set_flip_h(true)
+		get_node("carry").set_scale(Vector2(-1,1))
 
 func _on_FSM2D_stateChanged( newStateID, oldStateID ):
 #	prints(newStateID)

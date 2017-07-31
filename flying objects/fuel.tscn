@@ -66,11 +66,10 @@ rect = Rect2( -10, -10, 20, 20 )
 
 [node name="carried" type="Sprite" parent="."]
 
-visibility/visible = false
-transform/pos = Vector2( 0.0845566, -0.552654 )
+transform/pos = Vector2( -0.179016, -21.5879 )
 transform/scale = Vector2( 1, 0.203161 )
 texture = ExtResource( 2 )
-offset = Vector2( -0.0845547, 0.450453 )
+offset = Vector2( 0.179018, 103.991 )
 
 [node name="FSM2D" type="Node2D" parent="."]
 
@@ -89,7 +88,7 @@ updateMode = 1
 GraphData = {
 "burned": Vector2( 728, 417 ),
 "burned_": Vector2( 728, 417 ),
-"carried": Vector2( 480, 337 ),
+"carried": Vector2( 484, 341 ),
 "carried_": Vector2( 480, 337 ),
 "destroyed": Vector2( 658, 216 ),
 "destroyed_": Vector2( 658, 216 ),

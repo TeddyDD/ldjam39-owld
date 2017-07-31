@@ -27,11 +27,13 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
 	logicRoot.get_node("flying").queue_free()
 	logicRoot.get_node("carried").show()
+	logicRoot.set_rot(PI)
 	logicRoot.player.connect("dropItem", self, "on_drop_item")
 
 #when updating state, paramx can be used only if updating fsm manually
 func update(deltaTime, param0=null, param1=null, param2=null, param3=null, param4=null):
-	logicRoot.set_pos(logicRoot.player.get_pos())
+	logicRoot.set_pos(logicRoot.player.get_node("carry/carry point").get_global_pos())
+	
 
 #when exiting state
 func exit(toState=null):

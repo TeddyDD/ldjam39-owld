@@ -22,14 +22,14 @@
 [ext_resource path="res://owl/FSM/transitions/in_house/in_house.gd" type="Script" id=20]
 [ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.tscn" type="PackedScene" id=21]
 [ext_resource path="res://owl/FSM/transitions/falling_from_something/falling_from_something.gd" type="Script" id=22]
-[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=23]
-[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=24]
-[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=25]
-[ext_resource path="res://owl/5_by_kyasarinn-dbi8q9m.png" type="Texture" id=26]
-[ext_resource path="res://owl/6_by_kyasarinn-dbi8q9b.png" type="Texture" id=27]
-[ext_resource path="res://owl/7_by_kyasarinn-dbi8q95.png" type="Texture" id=28]
-[ext_resource path="res://owl/8_by_kyasarinn-dbi8q8u.png" type="Texture" id=29]
-[ext_resource path="res://owl/owl-walk1.png" type="Texture" id=30]
+[ext_resource path="res://owl/owl-walk1.png" type="Texture" id=23]
+[ext_resource path="res://owl/2_by_kyasarinn-dbi8qan.png" type="Texture" id=24]
+[ext_resource path="res://owl/3_by_kyasarinn-dbi8qab.png" type="Texture" id=25]
+[ext_resource path="res://owl/4_by_kyasarinn-dbi8qa0.png" type="Texture" id=26]
+[ext_resource path="res://owl/5_by_kyasarinn-dbi8q9m.png" type="Texture" id=27]
+[ext_resource path="res://owl/6_by_kyasarinn-dbi8q9b.png" type="Texture" id=28]
+[ext_resource path="res://owl/7_by_kyasarinn-dbi8q95.png" type="Texture" id=29]
+[ext_resource path="res://owl/8_by_kyasarinn-dbi8q8u.png" type="Texture" id=30]
 [ext_resource path="res://owl/owl-walk2.png" type="Texture" id=31]
 [ext_resource path="res://owl/owl-walk3.png" type="Texture" id=32]
 
@@ -53,7 +53,17 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ]
+"values": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("carry/carry point:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, -1 ), Vector2( 14, -4 ), Vector2( 14, -4 ), Vector2( 8, -5 ), Vector2( 0, -14 ), Vector2( 11, -10 ), Vector2( 15, -5 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -70,7 +80,17 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.2 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 23 ), ExtResource( 24 ) ]
+"values": [ ExtResource( 24 ), ExtResource( 25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("carry/carry point:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.2, 0.4 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, -1 ), Vector2( 14, -4 ), Vector2( 14, -4 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -87,7 +107,17 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 30 ) ]
+"values": [ ExtResource( 23 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("carry/carry point:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, -11 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -104,7 +134,17 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": FloatArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 30 ), ExtResource( 32 ) ]
+"values": [ ExtResource( 23 ), ExtResource( 31 ), ExtResource( 23 ), ExtResource( 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("carry/carry point:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, -11 ), Vector2( 16, -10 ) ]
 }
 
 [node name="owl" type="KinematicBody2D" groups=[
@@ -344,6 +384,12 @@ playback/process_mode = 1
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="carry" type="Node2D" parent="."]
+
+[node name="carry point" type="Position2D" parent="carry"]
+
+transform/pos = Vector2( 16, -11 )
 
 [connection signal="stateChanged" from="FSM2D" to="." method="_on_FSM2D_stateChanged"]
 

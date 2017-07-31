@@ -1,21 +1,27 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://home/home.gd" type="Script" id=1]
 [ext_resource path="res://home/domek_rodek_by_kyasarinn-dbi7yst.png" type="Texture" id=2]
 [ext_resource path="res://home/domek_zewntrzny_by_kyasarinn-dbi7yse.png" type="Texture" id=3]
 [ext_resource path="res://home/domek_rodek_otwarty_piecyk_by_kyasarinn-dbi7yt7.png" type="Texture" id=4]
+[ext_resource path="res://home/balon_by_kyasarinn-dbi9w3a.png" type="Texture" id=5]
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ColorRamp" id=9]
+
+offsets = FloatArray( 0, 0.988304 )
+colors = ColorArray( 1, 0.374298, 0.207031, 1, 1, 0.914062, 0, 1 )
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -74.3566, -0.329887, 95.0917, 1.43062, 94.6516, 18.5955, -74.3566, 17.7152 )
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -36.2785, -42.3909, 57.8218, -41.9616, 59.1778, -35.9566, -36.9028, -35.9566 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -34.1063, -35.622, 57.0457, -35.4692, 56.8079, 43.9608, -35.951, 43.6973 )
@@ -59,7 +65,46 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 points = Vector2Array( 22.0645, -16.4832, 55.1224, -16.4832, 55.3602, 44.4005, 14.454, 44.1626 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
+
+resource/name = "deploy"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ballon:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 4, 4 ),
+"update": 0,
+"values": [ Vector2( 11.8822, 28.6568 ), Vector2( 10.6693, -336.705 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ballon:transform/scale")
+tracks/1/interp = 2
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 1 ),
+"transitions": FloatArray( 4, 4 ),
+"update": 0,
+"values": [ Vector2( 0.0608449, 0.0608449 ), Vector2( 0.729478, 0.729478 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 1 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deploy"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
 
 resource/name = "burn stuff"
 length = 1.0
@@ -82,6 +127,36 @@ tracks/0/keys = {
 
 script/script = ExtResource( 1 )
 
+[node name="fire" type="Particles2D" parent="."]
+
+transform/pos = Vector2( 5.70467, -76.3303 )
+config/amount = 64
+config/lifetime = 2.0
+config/process_mode = 1
+config/half_extents = Vector2( 10, 0 )
+params/direction = 180.0
+params/spread = 10.0
+params/linear_velocity = 30.0
+params/spin_velocity = 0.1
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 1.0
+params/tangential_accel = 0.0
+params/damping = 0.5
+params/initial_angle = 0.0
+params/initial_size = 4.0
+params/final_size = 2.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 0.53
+randomness/spread = 0.17
+randomness/linear_velocity = 0.2
+randomness/initial_size = 0.2
+randomness/final_size = 0.06
+color/color_ramp = SubResource( 9 )
+
 [node name="inside" type="Sprite" parent="."]
 
 transform/pos = Vector2( 9.64197, 21.7908 )
@@ -93,10 +168,10 @@ region_rect = Rect2( 408, 52, 544, 596 )
 
 editor/display_folded = true
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 40 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 8 )
+shapes/1/shape = SubResource( 2 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
 collision/layers = 1
@@ -125,7 +200,7 @@ trigger = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 9 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -187,6 +262,7 @@ trigger = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/deploy = SubResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -197,11 +273,18 @@ autoplay = ""
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-"anims/burn stuff" = SubResource( 10 )
+"anims/burn stuff" = SubResource( 7 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="ballon" type="Sprite" parent="."]
+
+transform/pos = Vector2( 11.8822, 28.6568 )
+transform/scale = Vector2( 0.0608449, 0.0608449 )
+z/z = -1
+texture = ExtResource( 5 )
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 
