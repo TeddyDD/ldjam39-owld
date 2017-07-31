@@ -27,6 +27,7 @@ func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inA
 	getLogicRoot().velocity.x = 0
 	logicRoot.get_node("SamplePlayer2D").play("hit")
 	logicRoot.player.hp -= 20
+	logicRoot.player.say("ouch")
 	
 
 #when updating state, paramx can be used only if updating fsm manually

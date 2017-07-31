@@ -115,4 +115,6 @@ flat = false
 
 [connection signal="button_down" from="VBoxContainer/play" to="." method="_on_play_button_down"]
 
+[connection signal="button_down" from="VBoxContainer/ldjam" to="." method="_on_ldjam_button_down"]
+
 

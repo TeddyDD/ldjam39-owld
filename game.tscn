@@ -49,10 +49,10 @@ tracks/1/keys = {
 "times": FloatArray( 1, 5 ),
 "transitions": FloatArray( 1, 1 ),
 "values": [ {
-"args": [ "Terrible weather" ],
+"args": [ "The flood is coming. And tornado." ],
 "method": "say"
 }, {
-"args": [ "I should go" ],
+"args": [ "I should go inside..." ],
 "method": "say"
 } ]
 }
@@ -60,7 +60,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=2]
 
 resource/name = "start2_house"
-length = 6.0
+length = 8.0
 loop = false
 step = 1.0
 tracks/0/type = "method"
@@ -68,9 +68,12 @@ tracks/0/path = NodePath("owl")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray(  ),
-"transitions": FloatArray(  ),
-"values": [  ]
+"times": FloatArray( 8 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [ "get", 4 ],
+"method": "say"
+} ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("owl/Camera2D")
@@ -92,7 +95,7 @@ tracks/2/keys = {
 "times": FloatArray( 0, 3, 6 ),
 "transitions": FloatArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 484.272, 873.37 ), Vector2( 484.272, 698.81 ), Vector2( 484.272, 535.171 ) ]
+"values": [ Vector2( 0.728027, 873.37 ), Vector2( 4.93286, 698.81 ), Vector2( 4.93274, 535.171 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("ui/tutorial:visibility/opacity")
@@ -103,6 +106,18 @@ tracks/3/keys = {
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("fuel spawner")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 6 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start"
+} ]
 }
 
 [node name="game" type="Node2D"]
@@ -130,7 +145,7 @@ motion/mirroring = Vector2( 1024, 700 )
 
 [node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer 2"]
 
-transform/pos = Vector2( 527.638, 344.376 )
+transform/pos = Vector2( 527.638, 348.581 )
 transform/rot = -0.32627
 transform/scale = Vector2( 1.43965, 1.43965 )
 texture = ExtResource( 2 )
@@ -169,7 +184,7 @@ transform/pos = Vector2( -3.37024, 555.826 )
 [node name="owl" parent="." instance=ExtResource( 7 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 23.5888, 296.799 )
+transform/pos = Vector2( -282.358, 563.938 )
 
 [node name="rain" type="Particles2D" parent="owl"]
 
@@ -304,7 +319,7 @@ drag_margin/bottom = 0.2
 
 [node name="water" parent="." instance=ExtResource( 15 )]
 
-transform/pos = Vector2( 484.272, 873.37 )
+transform/pos = Vector2( 0.728027, 873.37 )
 z/z = 4
 
 [node name="game start" type="AnimationPlayer" parent="."]
@@ -319,11 +334,11 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "start"
 
-[connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
+[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
 
-[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
+[connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="." method="_on_home_player_in_house" flags=6]
 

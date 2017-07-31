@@ -21,8 +21,19 @@ var currentArea = null
 var tween
 
 var talk = {
-	start = "Terrible weather"
+	start = "Terrible weather",
+	hp = {txt = "I can rest inside", said = false},
+	better = {txt = "Much better", said = false},
+	ouch = { txt = "Ouch!", said = false },
+	get = { txt = """Ballon is leaking, furnace is old...
+	I can use wooden flying debris as fuel
+	to keep my house in the air.""",  said = false}
 }
+
+func say(what):
+	if not talk[what].said:
+		get_node("say").say(talk[what].txt)
+		talk[what].said = true
 
 func _ready():
 	set_fixed_process(true)
@@ -32,6 +43,12 @@ func _ready():
 	
 func _fixed_process(delta):
 	velocity.y += global.gravity.y * delta
+	
+	
+	# talking
+	if not talk.hp.said and hp < 60:
+		talk.hp.said = true
+		get_node("say").say(talk.hp.txt)
 	
 	if not in_house:
 		get_node("home arrow").set_rot((home.get_pos() - get_pos()).angle())
@@ -55,9 +72,9 @@ func standard_update(delta):
 		
 func sideways_movement(delta, walkSpeed=WALK_SPEED):
 	velocity.x = velocity.x * 0.5 
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") and get_global_pos().x > -1200:
 		velocity.x += -walkSpeed
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and get_global_pos().x < 1200:
 		velocity.x += walkSpeed
 	
 	if velocity.x > 0:
