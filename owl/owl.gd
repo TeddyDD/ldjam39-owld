@@ -27,7 +27,7 @@ func _ready():
 	set_fixed_process(true)
 	tween = get_node("Tween")
 	home = get_tree().get_nodes_in_group("home")[0]
-	get_node("say").say(talk["start"])
+#	get_node("say").say(talk["start"])
 	
 func _fixed_process(delta):
 	velocity.y += global.gravity.y * delta

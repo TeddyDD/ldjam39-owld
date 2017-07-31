@@ -2,6 +2,8 @@ extends Node2D
 
 var fuel = preload("res://flying objects/fuel.tscn")
 
+var start_sequence = true
+
 func _ready():
 	set_process(true)
 	
@@ -32,3 +34,18 @@ func _on_fuel_spawner_timeout():
 		f.set_pos(p)
 	
 	get_node("fuel spawner").start()
+	
+	
+	
+# START SEQUENCE!!!
+
+func start_setup():
+	get_node("intro camera").make_current()
+
+# one shoot signal
+func _on_home_player_in_house( state ):
+	# freeze player
+	
+	get_node("game start").play("start2_house")
+	
+#	get_node("owl/Camera2D").make_current()

@@ -1,28 +1,22 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://flying objects/fuel.gd" type="Script" id=1]
-[ext_resource path="res://tmp/wood-placeholder.png" type="Texture" id=2]
-[ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=3]
-[ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=4]
-[ext_resource path="res://flying objects/FSM/states/flying/flying.tscn" type="PackedScene" id=5]
-[ext_resource path="res://flying objects/FSM/states/flying/flying.gd" type="Script" id=6]
+[ext_resource path="res://flying objects/krzeslo.png" type="Texture" id=2]
+[ext_resource path="res://flying objects/deski.png" type="Texture" id=3]
+[ext_resource path="res://addons/net.kivano.fsm/content/fsm.gd" type="Script" id=4]
+[ext_resource path="res://addons/net.kivano.fsm/assets/ico2d.png" type="Texture" id=5]
+[ext_resource path="res://flying objects/FSM/states/flying/flying.tscn" type="PackedScene" id=6]
 [ext_resource path="res://flying objects/FSM/states/carried/carried.tscn" type="PackedScene" id=7]
-[ext_resource path="res://flying objects/FSM/states/carried/carried.gd" type="Script" id=8]
-[ext_resource path="res://flying objects/FSM/states/removed/removed.tscn" type="PackedScene" id=9]
-[ext_resource path="res://flying objects/FSM/states/removed/removed.gd" type="Script" id=10]
-[ext_resource path="res://flying objects/FSM/states/burned/burned.tscn" type="PackedScene" id=11]
-[ext_resource path="res://flying objects/FSM/states/burned/burned.gd" type="Script" id=12]
-[ext_resource path="res://flying objects/FSM/transitions/is_caught/is_caught.tscn" type="PackedScene" id=13]
-[ext_resource path="res://flying objects/FSM/transitions/is_caught/is_caught.gd" type="Script" id=14]
-[ext_resource path="res://flying objects/FSM/transitions/destroyed/destroyed.tscn" type="PackedScene" id=15]
-[ext_resource path="res://flying objects/FSM/transitions/destroyed/destroyed.gd" type="Script" id=16]
-[ext_resource path="res://flying objects/FSM/transitions/in_furnace/in_furnace.tscn" type="PackedScene" id=17]
-[ext_resource path="res://flying objects/FSM/transitions/in_furnace/in_furnace.gd" type="Script" id=18]
+[ext_resource path="res://flying objects/FSM/states/removed/removed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://flying objects/FSM/states/burned/burned.tscn" type="PackedScene" id=9]
+[ext_resource path="res://flying objects/FSM/transitions/is_caught/is_caught.tscn" type="PackedScene" id=10]
+[ext_resource path="res://flying objects/FSM/transitions/destroyed/destroyed.tscn" type="PackedScene" id=11]
+[ext_resource path="res://flying objects/FSM/transitions/in_furnace/in_furnace.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 20.8441
+radius = 30.7266
 
 [node name="fuel" type="Node2D" groups=[
 "flying",
@@ -32,20 +26,18 @@ script/script = ExtResource( 1 )
 
 [node name="flying" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Sprite" type="Sprite" parent="flying"]
 
-transform/pos = Vector2( 0.0845566, 0.0251961 )
+transform/pos = Vector2( 0.469531, 0 )
+transform/scale = Vector2( 0.0609385, 0.0609385 )
 texture = ExtResource( 2 )
-offset = Vector2( -0.0845547, 0.450453 )
 
 [node name="Area2D" type="Area2D" parent="flying"]
 
 editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0.0006415, -0.0006415, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0.000641501, -0.000641501, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -66,16 +58,19 @@ rect = Rect2( -10, -10, 20, 20 )
 
 [node name="carried" type="Sprite" parent="."]
 
-transform/pos = Vector2( -0.179016, -21.5879 )
-transform/scale = Vector2( 1, 0.203161 )
-texture = ExtResource( 2 )
-offset = Vector2( 0.179018, 103.991 )
+visibility/visible = false
+transform/pos = Vector2( 0.068512, -0.13895 )
+transform/rot = -50.7658
+transform/scale = Vector2( 0.0258132, 0.0258132 )
+texture = ExtResource( 3 )
+offset = Vector2( -28.4371, -42.9418 )
 
 [node name="FSM2D" type="Node2D" parent="."]
 
-script/script = ExtResource( 3 )
+visibility/visible = false
+script/script = ExtResource( 4 )
 __meta__ = {
-"_editor_icon": ExtResource( 4 )
+"_editor_icon": ExtResource( 5 )
 }
 path2LogicRoot = NodePath("..")
 onlyActiveStateOnTheScene = true
@@ -89,7 +84,7 @@ GraphData = {
 "burned": Vector2( 728, 417 ),
 "burned_": Vector2( 728, 417 ),
 "carried": Vector2( 484, 341 ),
-"carried_": Vector2( 480, 337 ),
+"carried_": Vector2( 484, 341 ),
 "destroyed": Vector2( 658, 216 ),
 "destroyed_": Vector2( 658, 216 ),
 "dir_key_pressed__": Vector2( 506, 154 ),
@@ -120,46 +115,32 @@ GraphData = {
 
 [node name="States" type="Node2D" parent="FSM2D"]
 
-[node name="flying" type="Node" parent="FSM2D/States" instance=ExtResource( 5 )]
+[node name="flying" parent="FSM2D/States" instance=ExtResource( 6 )]
 
-script/script = ExtResource( 6 )
+[node name="carried" parent="FSM2D/States" instance=ExtResource( 7 )]
 
-[node name="carried" type="Node" parent="FSM2D/States" instance=ExtResource( 7 )]
+[node name="removed" parent="FSM2D/States" instance=ExtResource( 8 )]
 
-script/script = ExtResource( 8 )
-
-[node name="removed" type="Node" parent="FSM2D/States" instance=ExtResource( 9 )]
-
-script/script = ExtResource( 10 )
-
-[node name="burned" type="Node" parent="FSM2D/States" instance=ExtResource( 11 )]
-
-script/script = ExtResource( 12 )
+[node name="burned" parent="FSM2D/States" instance=ExtResource( 9 )]
 
 [node name="Transitions" type="Node2D" parent="FSM2D"]
 
 editor/display_folded = true
 
-[node name="is_caught" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
+[node name="is_caught" parent="FSM2D/Transitions" instance=ExtResource( 10 )]
 
-script/script = ExtResource( 14 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/flying") ]
 path2TargetState = NodePath("../../States/carried")
-intervalBetweenChecks = -1.0
 
-[node name="destroyed" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 15 )]
+[node name="destroyed" parent="FSM2D/Transitions" instance=ExtResource( 11 )]
 
-script/script = ExtResource( 16 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/flying") ]
 path2TargetState = NodePath("../../States/removed")
-intervalBetweenChecks = -1.0
 
-[node name="in_furnace" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 17 )]
+[node name="in_furnace" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
 
-script/script = ExtResource( 18 )
 path2SourceStates = [ NodePath(""), NodePath("../../States/carried") ]
 path2TargetState = NodePath("../../States/burned")
-intervalBetweenChecks = -1.0
 
 [connection signal="area_enter" from="flying/Area2D" to="FSM2D/States/flying" method="_on_Area2D_area_enter"]
 

@@ -7,7 +7,7 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
-var value = rand_range(5,20)
+var value = rand_range(10,20)
 ##################################################################################
 #########                       Getters and Setters                      #########
 ##################################################################################

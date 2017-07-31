@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://world/chmury1_by_kyasarinn-dbi90ir.png" type="Texture" id=1]
-[ext_resource path="res://world/bg.png" type="Texture" id=2]
+[ext_resource path="res://world/chmury2_by_kyasarinn-dbi90ix.png" type="Texture" id=2]
+[ext_resource path="res://world/bg.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -26,19 +27,29 @@ bounce = 0.0
 transform/pos = Vector2( 0, -102.243 )
 texture = ExtResource( 1 )
 
+[node name="sky1" type="Sprite" parent="."]
+
+transform/pos = Vector2( -1467.58, -176.787 )
+texture = ExtResource( 1 )
+
+[node name="sky2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 1393.04, -102.243 )
+texture = ExtResource( 2 )
+flip_h = true
+
 [node name="bg" type="Sprite" parent="."]
 
-transform/pos = Vector2( 0, -245.476 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+transform/pos = Vector2( 0, -107.476 )
+texture = ExtResource( 3 )
+region = true
+region_rect = Rect2( 0, 280, 4500, 420 )
 
 [node name="bg front" type="Sprite" parent="."]
 
 transform/pos = Vector2( 5.37186, 52.075 )
 z/z = 2
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region = true
 region_rect = Rect2( 10, 596.753, 1490, 105.247 )
 __meta__ = {
