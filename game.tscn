@@ -1,15 +1,27 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
-[ext_resource path="res://world/grass.tscn" type="PackedScene" id=2]
-[ext_resource path="res://color-modulate/color-modulate.tscn" type="PackedScene" id=3]
-[ext_resource path="res://home/home.tscn" type="PackedScene" id=4]
-[ext_resource path="res://owl/owl.tscn" type="PackedScene" id=5]
-[ext_resource path="res://rain-particle.png" type="Texture" id=6]
-[ext_resource path="res://rain.gd" type="Script" id=7]
-[ext_resource path="res://ui/hp bar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://ui/fire bar.tscn" type="PackedScene" id=9]
-[ext_resource path="res://world/water.tscn" type="PackedScene" id=10]
+[ext_resource path="res://world/layer5_by_kyasarinn-dbicylx.png" type="Texture" id=2]
+[ext_resource path="res://world/layer3_by_kyasarinn-dbicym5.png" type="Texture" id=3]
+[ext_resource path="res://world/grass.tscn" type="PackedScene" id=4]
+[ext_resource path="res://color-modulate/color-modulate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://home/home.tscn" type="PackedScene" id=6]
+[ext_resource path="res://owl/owl.tscn" type="PackedScene" id=7]
+[ext_resource path="res://rain-particle.png" type="Texture" id=8]
+[ext_resource path="res://rain.gd" type="Script" id=9]
+[ext_resource path="res://ui/hp bar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/fire bar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://menu/wsad_by_kyasarinn-dbid88t.png" type="Texture" id=12]
+[ext_resource path="res://menu/spacyjka_by_kyasarinn-dbid88y.png" type="Texture" id=13]
+[ext_resource path="res://fonts/ZillaSlab-Bold.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://world/water.tscn" type="PackedScene" id=15]
+
+[sub_resource type="DynamicFont" id=3]
+
+font/size = 20
+font/use_mipmaps = true
+font/use_filter = true
+font/font = ExtResource( 14 )
 
 [sub_resource type="Animation" id=1]
 
@@ -82,25 +94,79 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 484.272, 873.37 ), Vector2( 484.272, 698.81 ), Vector2( 484.272, 535.171 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("ui/tutorial:visibility/opacity")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 3, 6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [node name="game" type="Node2D"]
 
 script/script = ExtResource( 1 )
 
-[node name="grass" parent="." instance=ExtResource( 2 )]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="ParallaxLayer 2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1024, 700 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer 2"]
+
+transform/pos = Vector2( 527.638, 344.376 )
+transform/rot = -0.32627
+transform/scale = Vector2( 1.43965, 1.43965 )
+texture = ExtResource( 2 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 1024, 700 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 368.802, 238.434 )
+transform/rot = -0.32627
+transform/scale = Vector2( 1.43965, 1.43965 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+transform/pos = Vector2( 779.112, 470.902 )
+texture = ExtResource( 3 )
+
+[node name="grass" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 4.55075, 618.25 )
 z/z = -1
 
-[node name="modulate" parent="." instance=ExtResource( 3 )]
+[node name="modulate" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -480.094, 0 )
 
-[node name="home" parent="." instance=ExtResource( 4 )]
+[node name="home" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( -3.37024, 555.826 )
 
-[node name="owl" parent="." instance=ExtResource( 5 )]
+[node name="owl" parent="." instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 23.5888, 296.799 )
@@ -115,7 +181,7 @@ config/preprocess = 3.0
 config/process_mode = 1
 config/half_extents = Vector2( 900, 400 )
 config/local_space = false
-config/texture = ExtResource( 6 )
+config/texture = ExtResource( 8 )
 params/direction = 45.0
 params/spread = 2.0
 params/linear_velocity = 400.0
@@ -134,7 +200,7 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/direction = 0.05
 color/color = Color( 0.601807, 0.630503, 0.664062, 1 )
-script/script = ExtResource( 7 )
+script/script = ExtResource( 9 )
 
 [node name="spawner" type="Position2D" parent="owl"]
 
@@ -142,32 +208,79 @@ transform/pos = Vector2( -7.64194, -524.54 )
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="hp bar" parent="ui" instance=ExtResource( 8 )]
+[node name="hp bar" parent="ui" instance=ExtResource( 10 )]
 
 margin/left = 14.0
 margin/top = 12.0
 margin/right = 157.0
 margin/bottom = 52.0
 
-[node name="ascend bar" parent="ui" instance=ExtResource( 9 )]
+[node name="ascend bar" parent="ui" instance=ExtResource( 11 )]
 
 margin/left = 14.0
 margin/top = 21.0
 margin/right = 316.0
 margin/bottom = 45.0
 
+[node name="tutorial" type="Node2D" parent="ui"]
+
+transform/pos = Vector2( 164.705, 558.885 )
+
+[node name="Sprite" type="Sprite" parent="ui/tutorial"]
+
+transform/pos = Vector2( -103.14, 71.6816 )
+transform/scale = Vector2( 0.241752, 0.241752 )
+texture = ExtResource( 12 )
+
+[node name="Sprite1" type="Sprite" parent="ui/tutorial"]
+
+transform/pos = Vector2( -106.261, 114.04 )
+transform/scale = Vector2( 0.169607, 0.169607 )
+texture = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="ui/tutorial"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -51.0
+margin/top = 63.0
+margin/right = -2.0
+margin/bottom = 88.0
+custom_fonts/font = SubResource( 3 )
+text = "move"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="ui/tutorial"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -51.0
+margin/top = 98.0
+margin/right = 93.0
+margin/bottom = 123.0
+custom_fonts/font = SubResource( 3 )
+text = "put into furnace"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="fuel spawner" type="Timer" parent="."]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
-autostart = true
+autostart = false
 
 [node name="intro camera" type="Camera2D" parent="."]
 
@@ -189,9 +302,9 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
-[node name="water" parent="." instance=ExtResource( 10 )]
+[node name="water" parent="." instance=ExtResource( 15 )]
 
-transform/pos = Vector2( 4.17755, 873.37 )
+transform/pos = Vector2( 484.272, 873.37 )
 z/z = 4
 
 [node name="game start" type="AnimationPlayer" parent="."]
@@ -206,13 +319,13 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "start"
 
-[connection signal="player_in_house" from="home" to="." method="_on_home_player_in_house" flags=6]
-
 [connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
+
+[connection signal="player_in_house" from="home" to="." method="_on_home_player_in_house" flags=6]
 
 [connection signal="timeout" from="fuel spawner" to="." method="_on_fuel_spawner_timeout"]
 

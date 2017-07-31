@@ -18,7 +18,7 @@ func _process(delta):
 func _on_fuel_spawner_timeout():
 	var dist = get_node("owl").get_pos().distance_to(get_node("home").get_pos())
 
-	if true: # dist > 500:
+	if true: # dist > 500:1
 		var f = fuel.instance()
 		# spawn position
 		var p = get_node("owl/spawner").get_global_pos()

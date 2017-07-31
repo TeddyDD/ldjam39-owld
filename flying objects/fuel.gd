@@ -24,6 +24,14 @@ var items = [
 	{
 		texture = "res://flying objects/kula.png",
 		type = NEGATIVE
+	},
+	{
+		texture = "res://flying objects/cegla.png",
+		type = NEGATIVE
+	},
+	{
+		texture = "res://flying objects/tv.png",
+		type = NEGATIVE
 	}
 ]
 

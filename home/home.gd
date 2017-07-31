@@ -9,6 +9,7 @@ var speed = 50
 
 func _ready():
 	set_fixed_process(true)
+	get_node("fire").set_emitting(false)
 	
 func _fixed_process(delta):
 	get_node("fire").set_amount(lerp(0,64, (speed+50)/100))
@@ -21,6 +22,8 @@ func _fixed_process(delta):
 # run from animation
 func deploy():
 	speed = max_asc_speed
+#	get_node("smoke").set_emitting(false)
+	get_node("fire").set_emitting(true)
 	deployed = true
 
 
