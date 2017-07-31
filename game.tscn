@@ -112,11 +112,11 @@ drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
 
-[connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
+[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
 
-[connection signal="player_in_house" from="home" to="owl/rain" method="_on_home_player_in_house"]
+[connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
 
 [connection signal="timeout" from="fuel spawner" to="." method="_on_fuel_spawner_timeout"]
 
