@@ -29,6 +29,5 @@ func prepare(inNewStateID):
 
 func transitionCondition(inDeltaTime, inParam0=null, inParam1=null, inParam2=null, inParam3=null, inParam4=null): 
 	return getFSM().getState().caught\
-	       and getLogicRoot().type == getLogicRoot().POSITIVE\
-	       and getLogicRoot().player.carry_items == 0\
+	       and getLogicRoot().type == getLogicRoot().NEGATIVE\
 	       and not getLogicRoot().player.in_house

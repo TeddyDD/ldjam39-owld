@@ -17,19 +17,18 @@ func _process(delta):
 
 func _on_fuel_spawner_timeout():
 	var dist = get_node("owl").get_pos().distance_to(get_node("home").get_pos())
-	prints(dist)
-	if dist > 500:
+
+	if true: # dist > 500:
 		var f = fuel.instance()
 		# spawn position
-	#	var p = Vector2(get_node("owl/spawner").get_global_pos()\
-	#	+ Vector2(rand_range(-300,300),0))
+		var p = get_node("owl/spawner").get_global_pos()
 	
-		var p = Vector2( get_node("owl/spawner").get_pos().x + rand_range(-600,600),\
-		                 get_node("owl/spawner").get_global_mouse_pos().y - 700)
+#		var p = Vector2( get_node("owl/spawner").get_pos().x + rand_range(-600,600),\
+#		                 get_node("owl/spawner").get_global_mouse_pos().y - 700)
 	
 		# spawn velocity vector
-		var v = (get_node("owl").get_pos() - p).normalized() * rand_range(0,300) + Vector2(rand_range(-500,500), rand_range(-50,0))
-		f.velocity = v
+#		var v = (get_node("owl").get_pos() - p).normalized() * rand_range(0,300) + Vector2(rand_range(-500,500), rand_range(-50,0))
+#		f.velocity = v
 		add_child(f)
 		f.set_pos(p)
 	

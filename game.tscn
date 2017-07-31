@@ -206,9 +206,9 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "start"
 
-[connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
-
 [connection signal="player_in_house" from="home" to="." method="_on_home_player_in_house" flags=6]
+
+[connection signal="player_in_house" from="home" to="modulate" method="_on_home_player_in_house"]
 
 [connection signal="player_in_house" from="home" to="owl" method="_on_home_player_in_house"]
 

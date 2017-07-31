@@ -7,11 +7,7 @@ extends "res://addons/net.kivano.fsm/content/FSMState.gd";
 ##################################################################################
 #####  Variables (Constants, Export Variables, Node Vars, Normal variables)  #####
 ######################### var myvar setget myvar_set,myvar_get ###################
-var rot_speed
-var sprite
-var n
-var caught = false
-
+var rot_speed = 30
 ##################################################################################
 #########                       Getters and Setters                      #########
 ##################################################################################
@@ -28,7 +24,9 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 
 #when entering state, usually you will want to reset internal state here somehow
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
-	rot_speed = rand_range(-8,8)
+	getLogicRoot().velocity.x = 0
+	logicRoot.get_node("SamplePlayer2D").play("hit")
+	logicRoot.player.hp -= 20
 	
 
 #when updating state, paramx can be used only if updating fsm manually
@@ -45,17 +43,7 @@ func exit(toState=null):
 ##################################################################################
 #########                       Connected Signals                        #########
 ##################################################################################
-func _on_Area2D_area_enter( area ):
-	if area.is_in_group("player"):
-		logicRoot.player = area.get_parent()
-		caught = true
-		# i shuldn't do this...
-#		if area.get_parent().carry_items == 0\
-#		and not area.get_parent().in_house: # more than 1?
-#			area.get_parent().carry_items += 1
-#			logicRoot.player = area.get_parent()
-#			caught = true
-	
+
 ##################################################################################
 #########     Methods fired because of events (usually via Groups interface)  ####
 ##################################################################################
@@ -63,8 +51,7 @@ func _on_Area2D_area_enter( area ):
 ##################################################################################
 #########                         Public Methods                         #########
 ##################################################################################
-func update_pos():
-	n.set_pos(logicRoot.get_pos())
+
 ##################################################################################
 #########                         Inner Methods                          #########
 ##################################################################################
@@ -72,6 +59,3 @@ func update_pos():
 ##################################################################################
 #########                         Inner Classes                          #########
 ##################################################################################
-
-
-

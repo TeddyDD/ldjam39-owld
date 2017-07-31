@@ -25,6 +25,7 @@ func stateInit(inParam1=null,inParam2=null,inParam3=null,inParam4=null, inParam5
 
 #when entering state, usually you will want to reset internal state here somehow
 func enter(fromStateID=null, fromTransitionID=null, inArg0=null,inArg1=null, inArg2=null):
+	logicRoot.player.carry_items += 1
 	logicRoot.get_node("flying").queue_free()
 	logicRoot.get_node("carried").show()
 	logicRoot.set_rot(PI)

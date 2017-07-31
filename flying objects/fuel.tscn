@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://flying objects/fuel.gd" type="Script" id=1]
 [ext_resource path="res://flying objects/krzeslo.png" type="Texture" id=2]
@@ -9,14 +9,28 @@
 [ext_resource path="res://flying objects/FSM/states/carried/carried.tscn" type="PackedScene" id=7]
 [ext_resource path="res://flying objects/FSM/states/removed/removed.tscn" type="PackedScene" id=8]
 [ext_resource path="res://flying objects/FSM/states/burned/burned.tscn" type="PackedScene" id=9]
-[ext_resource path="res://flying objects/FSM/transitions/is_caught/is_caught.tscn" type="PackedScene" id=10]
-[ext_resource path="res://flying objects/FSM/transitions/destroyed/destroyed.tscn" type="PackedScene" id=11]
-[ext_resource path="res://flying objects/FSM/transitions/in_furnace/in_furnace.tscn" type="PackedScene" id=12]
+[ext_resource path="res://flying objects/FSM/states/falling/falling.tscn" type="PackedScene" id=10]
+[ext_resource path="res://flying objects/FSM/states/falling/falling.gd" type="Script" id=11]
+[ext_resource path="res://flying objects/FSM/transitions/is_caught/is_caught.tscn" type="PackedScene" id=12]
+[ext_resource path="res://flying objects/FSM/transitions/destroyed/destroyed.tscn" type="PackedScene" id=13]
+[ext_resource path="res://flying objects/FSM/transitions/in_furnace/in_furnace.tscn" type="PackedScene" id=14]
+[ext_resource path="res://flying objects/FSM/transitions/hit_player/hit_player.tscn" type="PackedScene" id=15]
+[ext_resource path="res://flying objects/FSM/transitions/hit_player/hit_player.gd" type="Script" id=16]
+[ext_resource path="res://sounds/hit.wav" type="Sample" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 30.7266
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/hit = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 17 )
+}
 
 [node name="fuel" type="Node2D" groups=[
 "flying",
@@ -83,26 +97,30 @@ updateMode = 1
 GraphData = {
 "burned": Vector2( 728, 417 ),
 "burned_": Vector2( 728, 417 ),
-"carried": Vector2( 484, 341 ),
-"carried_": Vector2( 484, 341 ),
-"destroyed": Vector2( 658, 216 ),
-"destroyed_": Vector2( 658, 216 ),
+"carried": Vector2( 477, 335 ),
+"carried_": Vector2( 477, 335 ),
+"destroyed": Vector2( 680, 244 ),
+"destroyed_": Vector2( 680, 244 ),
 "dir_key_pressed__": Vector2( 506, 154 ),
 "dive__": Vector2( 800, 630 ),
+"falling": Vector2( 894, 207 ),
+"falling_": Vector2( 894, 207 ),
 "flap_in_air__": Vector2( 399, 466 ),
 "flap_pressed__": Vector2( 504, 294 ),
 "fly_down__": Vector2( 422, 586 ),
 "fly_up__": Vector2( 501, 384 ),
-"flying": Vector2( 474, 119 ),
-"flying_": Vector2( 474, 119 ),
+"flying": Vector2( 490, 113 ),
+"flying_": Vector2( 490, 113 ),
 "flying__": Vector2( -9, 27 ),
 "has_stopped__": Vector2( 505, 227 ),
+"hit_player": Vector2( 834, 112 ),
+"hit_player_": Vector2( 834, 112 ),
 "idle__": Vector2( 233, 228 ),
 "in_furnace": Vector2( 483, 415 ),
 "in_furnace_": Vector2( 483, 415 ),
 "in_house__": Vector2( 123, 81 ),
-"is_caught": Vector2( 477, 220 ),
-"is_caught_": Vector2( 477, 220 ),
+"is_caught": Vector2( 510, 245 ),
+"is_caught_": Vector2( 510, 245 ),
 "is_diving__": Vector2( 725, 499 ),
 "is_falling__": Vector2( 536, 466 ),
 "move__": Vector2( 856, 214 ),
@@ -123,24 +141,44 @@ GraphData = {
 
 [node name="burned" parent="FSM2D/States" instance=ExtResource( 9 )]
 
+[node name="falling" type="Node" parent="FSM2D/States" instance=ExtResource( 10 )]
+
+script/script = ExtResource( 11 )
+
 [node name="Transitions" type="Node2D" parent="FSM2D"]
 
-editor/display_folded = true
-
-[node name="is_caught" parent="FSM2D/Transitions" instance=ExtResource( 10 )]
+[node name="is_caught" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/flying") ]
 path2TargetState = NodePath("../../States/carried")
 
-[node name="destroyed" parent="FSM2D/Transitions" instance=ExtResource( 11 )]
+[node name="destroyed" parent="FSM2D/Transitions" instance=ExtResource( 13 )]
 
-path2SourceStates = [ NodePath(""), NodePath("../../States/flying") ]
+path2SourceStates = [ NodePath(""), NodePath("../../States/flying"), NodePath("../../States/falling") ]
 path2TargetState = NodePath("../../States/removed")
 
-[node name="in_furnace" parent="FSM2D/Transitions" instance=ExtResource( 12 )]
+[node name="in_furnace" parent="FSM2D/Transitions" instance=ExtResource( 14 )]
 
 path2SourceStates = [ NodePath(""), NodePath("../../States/carried") ]
 path2TargetState = NodePath("../../States/burned")
+
+[node name="hit_player" type="Node" parent="FSM2D/Transitions" instance=ExtResource( 15 )]
+
+script/script = ExtResource( 16 )
+path2SourceStates = [ NodePath(""), NodePath("../../States/flying") ]
+path2TargetState = NodePath("../../States/falling")
+intervalBetweenChecks = -1.0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="flying/Area2D" to="FSM2D/States/flying" method="_on_Area2D_area_enter"]
 
