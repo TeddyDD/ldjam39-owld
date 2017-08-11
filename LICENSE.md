@@ -27,3 +27,9 @@ SOFTWARE.
 
 Creative Commons Attributio NonCommercial ShareAlike v4.0 International
 https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# FSM Godot Plugin
+
+Made by [kubecz3k](https://github.com/kubecz3k)
+
+MIT License https://github.com/kubecz3k/FiniteStateMachine/blob/master/LICENSE
